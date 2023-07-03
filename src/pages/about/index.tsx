@@ -1,9 +1,12 @@
+import BaseLayout from "@/components/Layouts/BaseLayout";
+import SubLayout from "@/components/Layouts/SubLayout";
 import Image from "next/image";
+import { ReactElement } from "react";
 
-const about = () => {
+const About = () => {
   return (
     <>
-      <div>about 페이지입니다.</div>
+      <div>About 페이지입니다.</div>
       <Image
         src="/images/profile.png"
         width={144}
@@ -14,4 +17,12 @@ const about = () => {
   );
 };
 
-export default about;
+About.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <SubLayout>
+      <BaseLayout>{page}</BaseLayout>
+    </SubLayout>
+  );
+};
+
+export default About;

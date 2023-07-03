@@ -4,9 +4,6 @@ const Header = () => {
   return (
     <ul>
       <li>
-        <Link href="/">Home</Link>
-      </li>
-      <li>
         <Link href="/blog">블로그</Link>
       </li>
       <li>

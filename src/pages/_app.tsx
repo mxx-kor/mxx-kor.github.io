@@ -1,19 +1,21 @@
-import Header from "@/components/Header";
 import { AppProps } from "next/app";
-import Head from "next/head";
 import "@/styles/globals.css";
+import BaseLayout from "@/components/Layouts/BaseLayout";
+import { NextPage } from "next";
+import { ReactElement, ReactNode } from "react";
 
-const Test = ({ Component }: AppProps) => {
-  return (
-    <>
-      <Head>
-        <title>minjae.log</title>
-        <link rel="icon" href="/vercel.svg" />
-      </Head>
-      <Header />
-      <Component />
-    </>
-  );
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
 };
 
-export default Test;
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+const App = ({ Component }: AppPropsWithLayout) => {
+  const getLayout =
+    Component.getLayout || (page => <BaseLayout>{page}</BaseLayout>);
+  return getLayout(<Component />);
+};
+
+export default App;
