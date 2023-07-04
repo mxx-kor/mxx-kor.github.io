@@ -1,13 +1,25 @@
+import { getDataBase } from "@/apis/notion";
 import BaseLayout from "@/components/Layouts/BaseLayout";
 import SubLayout from "@/components/Layouts/SubLayout";
+import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
 import Link from "next/link";
 import { ReactElement } from "react";
 
-const Blog = () => {
+export async function getStaticProps() {
+  const posts = await getDataBase();
+
+  return { props: { posts } };
+}
+
+const Blog = ({ posts }: { posts: QueryDatabaseResponse }) => {
   return (
     <>
       <div className="text-3xl">Blog</div>
-      <Link href="/blog/1">1번 포스트로</Link>
+      {posts.results.map((post, idx) => (
+        <Link key={idx} href="/blog/1">
+          {post.id}
+        </Link>
+      ))}
     </>
   );
 };
