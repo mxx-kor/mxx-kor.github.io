@@ -10,3 +10,17 @@ export const getDataBase = async () => {
   });
   return response;
 };
+
+export const getPost = async (id: string) => {
+  const myPost = await notion.pages.retrieve({
+    page_id: id,
+  });
+  return myPost;
+};
+
+export async function getBlocks(id: string) {
+  const myBlocks = await notion.blocks.children.list({
+    block_id: id,
+  });
+  return myBlocks;
+}
