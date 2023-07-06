@@ -5,10 +5,12 @@ import Link from "next/link";
 import { ReactElement } from "react";
 
 type PostInfo = {
+  id: string;
   created_time: Date;
   properties: {
-    name: { id: string; title: { plain_text: string }[] };
-    tag: { id: string; multi_select: { name: string }[] };
+    url_title: { id: string; title: { plain_text: string }[] };
+    blog_title: { id: string; rich_text: { plain_text: string }[] };
+    tags: { id: string; multi_select: { id: string; name: string }[] };
   };
 };
 
@@ -17,6 +19,7 @@ export async function getStaticProps() {
   const posts = db.results.map(post => {
     if ("properties" in post) {
       const result = {
+        id: post.id,
         properties: post.properties,
         created_time: post.created_time,
       };
@@ -32,12 +35,17 @@ const Blog = ({ posts }: { posts: PostInfo[] }) => {
     <>
       <div className="text-3xl">Blog</div>
       <ul>
-        {posts.map((post, idx) => (
-          <li key={idx}>
-            {JSON.stringify(post.created_time)}
-            <Link href="/blog/1">
-              {post.properties.name.title[0].plain_text}
+        {posts.map(({ id, created_time, properties }) => (
+          <li key={id}>
+            <Link href={`/blog/${properties.url_title.title[0].plain_text}`}>
+              {properties.blog_title.rich_text[0].plain_text}
             </Link>
+            <div>{JSON.stringify(created_time)}</div>
+            <div>
+              {properties.tags.multi_select.map(tag => (
+                <span key={tag.id}>{tag.name}</span>
+              ))}
+            </div>
           </li>
         ))}
       </ul>
