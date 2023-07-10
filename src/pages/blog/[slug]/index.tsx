@@ -1,4 +1,5 @@
 import { getBlocks, getDataBase, getPost } from "@/apis/notion";
+import Comments from "@/components/Comments";
 import BaseLayout from "@/components/Layouts/BaseLayout";
 import SubLayout from "@/components/Layouts/SubLayout";
 import {
@@ -82,6 +83,11 @@ const Post = ({ post, blocks }: PostProps) => {
     "properties" in post &&
     "rich_text" in post.properties.blog_title &&
     post.properties.blog_title.rich_text[0].plain_text;
+  const repo = process.env.COMMENTS_REPO;
+  const repoId = process.env.COMMENTS_REPO_ID;
+  const category = process.env.COMMENTS_CATEGORY;
+  const categoryId = process.env.COMMENTS_CATEGORY_ID;
+
   return (
     <>
       <h1>{title}</h1>
@@ -90,6 +96,14 @@ const Post = ({ post, blocks }: PostProps) => {
           return <Fragment key={block.id}>{renderBlock(block)}</Fragment>;
         }
       })}
+      {repo && repoId && category && categoryId && (
+        <Comments
+          repo={repo}
+          repoId={repoId}
+          category={category}
+          categoryId={categoryId}
+        />
+      )}
     </>
   );
 };
