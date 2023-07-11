@@ -6,6 +6,9 @@ const nextConfig = {
     COMMENTS_CATEGORY: "Comments",
     COMMENTS_CATEGORY_ID: "DIC_kwDOJ2XnQ84CXxYD",
   },
+  images: {
+    domains: ["s3.us-west-2.amazonaws.com"],
+  },
 };
 
 module.exports = nextConfig;
