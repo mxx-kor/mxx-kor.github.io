@@ -1,6 +1,7 @@
 import { getDataBase } from "@/apis/notion";
 import BaseLayout from "@/components/Layouts/BaseLayout";
 import SubLayout from "@/components/Layouts/SubLayout";
+import { isFullPage } from "@notionhq/client";
 import Link from "next/link";
 import { ReactElement } from "react";
 
@@ -17,14 +18,13 @@ type PostInfo = {
 export async function getStaticProps() {
   const db = await getDataBase();
   const posts = db.results.map(post => {
-    if ("properties" in post) {
-      const result = {
-        id: post.id,
-        properties: post.properties,
-        created_time: post.created_time,
-      };
-      return result;
-    }
+    if (!isFullPage(post)) return;
+    const result = {
+      id: post.id,
+      properties: post.properties,
+      created_time: post.created_time,
+    };
+    return result;
   });
 
   return { props: { posts } };
