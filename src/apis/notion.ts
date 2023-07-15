@@ -1,4 +1,6 @@
-import { Client } from "@notionhq/client";
+import { CustomBlockObjectResponse } from "@/types/notion";
+import { Client, isFullBlock } from "@notionhq/client";
+import { PartialBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -18,9 +20,23 @@ export const getPost = async (id: string) => {
   return myPost;
 };
 
-export async function getBlocks(id: string) {
-  const myBlocks = await notion.blocks.children.list({
-    block_id: id,
+export const getBlocks = async (
+  blockId: string,
+): Promise<(PartialBlockObjectResponse | CustomBlockObjectResponse)[]> => {
+  blockId = blockId.replaceAll("-", "");
+
+  const { results } = await notion.blocks.children.list({
+    block_id: blockId,
   });
-  return myBlocks;
-}
+
+  const childBlocks = results.map(async block => {
+    if (!isFullBlock(block)) return block;
+    if (block.has_children) {
+      const children = await getBlocks(block.id);
+      return { ...block, children };
+    }
+    return block;
+  });
+
+  return Promise.all(childBlocks);
+};
