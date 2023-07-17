@@ -10,6 +10,7 @@ import {
   TextRichTextItemResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import { GetStaticPropsContext } from "next";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment, ReactElement } from "react";
@@ -119,19 +120,19 @@ const renderBlock = (block: CustomBlockObjectResponse) => {
       );
     case "heading_1":
       return (
-        <h1 className="text-xl font-bold">
+        <h1 className="text-3xl font-bold">
           <Text text={block[type].rich_text} />
         </h1>
       );
     case "heading_2":
       return (
-        <h2 className="text-lg font-bold">
+        <h2 className="text-xl font-bold">
           <Text text={block[type].rich_text} />
         </h2>
       );
     case "heading_3":
       return (
-        <h3>
+        <h3 className="text-lg font-bold">
           <Text text={block[type].rich_text} />
         </h3>
       );
@@ -195,10 +196,12 @@ const renderBlock = (block: CustomBlockObjectResponse) => {
               height={300}
               src={external.url}
               alt={
-                block[type].caption ? block[type].caption[0]?.plain_text : ""
+                block[type].caption.length
+                  ? block[type].caption[0]?.plain_text
+                  : "연관 사진"
               }
             />
-            {block[type].caption && (
+            {block[type].caption.length && (
               <figcaption>{block[type].caption[0]?.plain_text}</figcaption>
             )}
           </figure>
@@ -217,10 +220,12 @@ const renderBlock = (block: CustomBlockObjectResponse) => {
               height={300}
               src={file.url}
               alt={
-                block[type].caption ? block[type].caption[0]?.plain_text : ""
+                block[type].caption.length
+                  ? block[type].caption[0]?.plain_text
+                  : "연관 사진"
               }
             />
-            {block[type].caption && (
+            {block[type].caption.length && (
               <figcaption>{block[type].caption[0]?.plain_text}</figcaption>
             )}
           </figure>
@@ -352,6 +357,9 @@ const Post = ({ post, blocks }: PostProps) => {
 
   return (
     <>
+      <Head>
+        <title>{title}</title>
+      </Head>
       <h1 className="text-brown">{title}</h1>
       {blocks.map(block => {
         return <Fragment key={block.id}>{renderBlock(block)}</Fragment>;
