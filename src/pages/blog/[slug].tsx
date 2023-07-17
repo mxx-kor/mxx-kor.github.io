@@ -111,6 +111,7 @@ const renderBlock = (block: CustomBlockObjectResponse) => {
 
   switch (type) {
     case "paragraph":
+      if (!block[type].rich_text.length) return <br />;
       return (
         <p>
           <Text text={block[type].rich_text} />
