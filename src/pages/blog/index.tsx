@@ -9,9 +9,9 @@ type PostInfo = {
   id: string;
   created_time: Date;
   properties: {
-    url_title: { id: string; title: { plain_text: string }[] };
-    blog_title: { id: string; rich_text: { plain_text: string }[] };
-    tags: { id: string; multi_select: { id: string; name: string }[] };
+    Slug: { id: string; title: { plain_text: string }[] };
+    Title: { id: string; rich_text: { plain_text: string }[] };
+    Tags: { id: string; multi_select: { id: string; name: string }[] };
   };
 };
 
@@ -37,12 +37,12 @@ const Blog = ({ posts }: { posts: PostInfo[] }) => {
       <ul>
         {posts.map(({ id, created_time, properties }) => (
           <li key={id}>
-            <Link href={`/blog/${properties.url_title.title[0].plain_text}`}>
-              {properties.blog_title.rich_text[0].plain_text}
+            <Link href={`/blog/${properties.Slug.title[0].plain_text}`}>
+              {properties.Title.rich_text[0].plain_text}
             </Link>
             <div>{JSON.stringify(created_time)}</div>
             <div>
-              {properties.tags.multi_select.map(tag => (
+              {properties.Tags.multi_select.map(tag => (
                 <span key={tag.id}>{tag.name}</span>
               ))}
             </div>

@@ -1,42 +1,28 @@
-import { CustomBlockObjectResponse } from "@/types/notion";
-import { Client, isFullBlock } from "@notionhq/client";
-import { PartialBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
+import { Client } from "@notionhq/client";
+import { NotionAPI } from "notion-client";
 
-const notion = new Client({
+const notionClient = new Client({
   auth: process.env.NOTION_TOKEN,
 });
 
+const notionReact = new NotionAPI();
+
 export const getDataBase = async () => {
-  const response = await notion.databases.query({
+  const response = await notionClient.databases.query({
     database_id: `${process.env.NOTION_DATABASE_ID}`,
   });
   return response;
 };
 
+export const getNotionPage = async (blockId: string) => {
+  const response = await notionReact.getPage(blockId);
+
+  return response;
+};
+
 export const getPost = async (id: string) => {
-  const myPost = await notion.pages.retrieve({
+  const myPost = await notionClient.pages.retrieve({
     page_id: id,
   });
   return myPost;
-};
-
-export const getBlocks = async (
-  blockId: string,
-): Promise<(PartialBlockObjectResponse | CustomBlockObjectResponse)[]> => {
-  blockId = blockId.replaceAll("-", "");
-
-  const { results } = await notion.blocks.children.list({
-    block_id: blockId,
-  });
-
-  const childBlocks = results.map(async block => {
-    if (!isFullBlock(block)) return block;
-    if (block.has_children) {
-      const children = await getBlocks(block.id);
-      return { ...block, children };
-    }
-    return block;
-  });
-
-  return Promise.all(childBlocks);
 };
