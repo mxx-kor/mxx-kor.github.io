@@ -4,14 +4,12 @@ import Head from "next/head";
 
 const BaseLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div>
+    <div className="container mx-auto max-w-screen-md">
       <Head>
         <title>minjae.log</title>
         <link rel="icon" href="/vercel.svg" />
       </Head>
-      <header>
-        <Header />
-      </header>
+      <Header />
       <main>{children}</main>
       <footer>minjae Kim</footer>
     </div>

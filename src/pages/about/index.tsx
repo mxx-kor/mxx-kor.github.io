@@ -1,7 +1,4 @@
-import BaseLayout from "@/components/Layouts/BaseLayout";
-import SubLayout from "@/components/Layouts/SubLayout";
 import Image from "next/image";
-import { ReactElement } from "react";
 
 const About = () => {
   return (
@@ -14,14 +11,6 @@ const About = () => {
         alt="Profile Photo"
       />
     </>
-  );
-};
-
-About.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <SubLayout>
-      <BaseLayout>{page}</BaseLayout>
-    </SubLayout>
   );
 };
 

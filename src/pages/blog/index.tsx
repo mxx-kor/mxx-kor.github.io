@@ -1,9 +1,6 @@
 import { getDataBase } from "@/apis/notion";
-import BaseLayout from "@/components/Layouts/BaseLayout";
-import SubLayout from "@/components/Layouts/SubLayout";
 import { isFullPage } from "@notionhq/client";
 import Link from "next/link";
-import { ReactElement } from "react";
 
 type PostInfo = {
   id: string;
@@ -50,14 +47,6 @@ const Blog = ({ posts }: { posts: PostInfo[] }) => {
         ))}
       </ul>
     </>
-  );
-};
-
-Blog.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <SubLayout>
-      <BaseLayout>{page}</BaseLayout>
-    </SubLayout>
   );
 };
 

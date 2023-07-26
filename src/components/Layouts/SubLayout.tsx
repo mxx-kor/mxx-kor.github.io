@@ -1,10 +1,12 @@
 import React, { ReactNode } from "react";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 const SubLayout = ({ children }: { children: ReactNode }) => {
+  const router = useRouter();
+
   return (
     <div>
-      <Link href="/">Home</Link>
+      <button onClick={() => router.back()}>뒤로 가기</button>
       {children}
     </div>
   );

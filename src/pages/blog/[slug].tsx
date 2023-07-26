@@ -112,9 +112,9 @@ const Post = ({ post, recordMap }: PostProps) => {
 
 Post.getLayout = function getLayout(page: ReactElement) {
   return (
-    <SubLayout>
-      <BaseLayout>{page}</BaseLayout>
-    </SubLayout>
+    <BaseLayout>
+      <SubLayout>{page}</SubLayout>
+    </BaseLayout>
   );
 };
 
