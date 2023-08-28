@@ -1,10 +1,11 @@
 import { getDataBase } from "@/apis/notion";
+import { dateFormat } from "@/constants/format";
 import { isFullPage } from "@notionhq/client";
 import Link from "next/link";
 
 type PostInfo = {
   id: string;
-  created_time: Date;
+  created_time: string;
   properties: {
     Slug: { id: string; title: { plain_text: string }[] };
     Title: { id: string; rich_text: { plain_text: string }[] };
@@ -19,7 +20,7 @@ export async function getStaticProps() {
     const result = {
       id: post.id,
       properties: post.properties,
-      created_time: post.created_time,
+      created_time: dateFormat(post.created_time),
     };
     return result;
   });
@@ -34,13 +35,21 @@ const Blog = ({ posts }: { posts: PostInfo[] }) => {
       <ul>
         {posts.map(({ id, created_time, properties }) => (
           <li key={id}>
-            <Link href={`/blog/${properties.Slug.title[0].plain_text}`}>
+            <Link
+              className="text-2xl font-bold"
+              href={`/blog/${properties.Slug.title[0].plain_text}`}
+            >
               {properties.Title.rich_text[0].plain_text}
             </Link>
-            <div>{JSON.stringify(created_time)}</div>
+            <div>{created_time}</div>
             <div>
               {properties.Tags.multi_select.map(tag => (
-                <span key={tag.id}>{tag.name}</span>
+                <span
+                  className="border rounded-lg px-1 mr-2 text-sm"
+                  key={tag.id}
+                >
+                  {tag.name}
+                </span>
               ))}
             </div>
           </li>
