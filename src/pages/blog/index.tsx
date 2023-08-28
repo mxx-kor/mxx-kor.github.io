@@ -1,6 +1,8 @@
 import { getDataBase } from "@/apis/notion";
+import IconText from "@/components/IconText";
 import { dateFormat } from "@/constants/format";
 import { isFullPage } from "@notionhq/client";
+import { AiTwotoneCalendar } from "@react-icons/all-files/ai/AiTwotoneCalendar";
 import Link from "next/link";
 
 type PostInfo = {
@@ -41,15 +43,17 @@ const Blog = ({ posts }: { posts: PostInfo[] }) => {
             >
               {properties.Title.rich_text[0].plain_text}
             </Link>
-            <div>{created_time}</div>
+            <IconText Icon={AiTwotoneCalendar} text={created_time} />
             <div>
               {properties.Tags.multi_select.map(tag => (
-                <span
-                  className="border rounded-lg px-1 mr-2 text-sm"
-                  key={tag.id}
-                >
-                  {tag.name}
-                </span>
+                <>
+                  <span
+                    className="border rounded-lg px-1 mr-2 text-sm"
+                    key={tag.id}
+                  >
+                    {tag.name}
+                  </span>
+                </>
               ))}
             </div>
           </li>
