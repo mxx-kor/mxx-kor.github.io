@@ -46,14 +46,12 @@ const Blog = ({ posts }: { posts: PostInfo[] }) => {
             <IconText Icon={AiTwotoneCalendar} text={created_time} />
             <div>
               {properties.Tags.multi_select.map(tag => (
-                <>
-                  <span
-                    className="border rounded-lg px-1 mr-2 text-sm"
-                    key={tag.id}
-                  >
-                    {tag.name}
-                  </span>
-                </>
+                <span
+                  className="border rounded-lg px-1 mr-2 text-sm"
+                  key={tag.id}
+                >
+                  {tag.name}
+                </span>
               ))}
             </div>
           </li>

@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Spoqa Han Sans Neo";
+  font-weight: 100;
+  font-style: normal;
+  src: url("/fonts/SpoqaHanSansNeo-Thin.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Spoqa Han Sans Neo";
+  font-weight: 300;
+  font-style: normal;
+  src: url("/fonts/SpoqaHanSansNeo-Light.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Spoqa Han Sans Neo";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/fonts/SpoqaHanSansNeo-Regular.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Spoqa Han Sans Neo";
+  font-weight: 500;
+  font-style: normal;
+  src: url("/fonts/SpoqaHanSansNeo-Medium.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Spoqa Han Sans Neo";
+  font-weight: 700;
+  font-style: normal;
+  src: url("/fonts/SpoqaHanSansNeo-Bold.ttf") format("ttf");
+}
+
+body {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+}
