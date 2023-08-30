@@ -33,12 +33,12 @@ export async function getStaticProps() {
 const Blog = ({ posts }: { posts: PostInfo[] }) => {
   return (
     <>
-      <div className="text-3xl">Blog</div>
+      <div className="text-3xl font-bold mb-3">Blog</div>
       <ul>
         {posts.map(({ id, created_time, properties }) => (
           <li key={id}>
             <Link
-              className="text-2xl font-bold"
+              className="text-2xl font-medium"
               href={`/blog/${properties.Slug.title[0].plain_text}`}
             >
               {properties.Title.rich_text[0].plain_text}

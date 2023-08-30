@@ -11,6 +11,7 @@ import "prismjs/themes/prism-tomorrow.css";
 
 // used for rendering equations (optional)
 import "katex/dist/katex.min.css";
+import Font from "@/components/Font";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -23,7 +24,12 @@ type AppPropsWithLayout = AppProps & {
 const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout =
     Component.getLayout || (page => <BaseLayout>{page}</BaseLayout>);
-  return getLayout(<Component {...pageProps} />);
+  return getLayout(
+    <>
+      <Font />
+      <Component {...pageProps} />
+    </>,
+  );
 };
 
 export default App;

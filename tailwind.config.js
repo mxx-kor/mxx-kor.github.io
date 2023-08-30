@@ -15,6 +15,10 @@ module.exports = {
         red: "rgb(220 38 38)",
       },
     },
+    fontFamily: {
+      sans: ["var(--font-sans)"],
+      spoqa: ["var(--font-spoqa)"],
+    },
   },
   plugins: [],
 };
