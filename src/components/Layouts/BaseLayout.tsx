@@ -9,9 +9,9 @@ const BaseLayout = ({ children }: { children: ReactNode }) => {
         <title>minjae.log</title>
         <link rel="icon" href="/vercel.svg" />
       </Head>
-      <div className="container mx-auto max-w-screen-md">
+      <div className="container mx-auto max-w-screen-md dark">
         <Header />
-        <main className="font-spoqa font-sans">{children}</main>
+        <main className="font-spoqa font-sans dark:bg-black">{children}</main>
         <footer>minjae Kim</footer>
       </div>
     </>

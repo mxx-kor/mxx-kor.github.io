@@ -1,14 +1,14 @@
-import { Head, Main, NextScript } from "next/document";
+import { Head, Html, Main, NextScript } from "next/document";
 
 const Document = () => {
   return (
-    <html lang="ko">
+    <Html lang="ko">
       <Head />
       <body>
         <Main />
         <NextScript />
       </body>
-    </html>
+    </Html>
   );
 };
 

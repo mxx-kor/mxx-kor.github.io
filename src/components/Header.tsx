@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ThemeSwitch from "./ThemeSwitch";
 
 const Header = () => {
   return (
@@ -7,6 +8,7 @@ const Header = () => {
         Minjae.log
       </Link>
       <ul className="flex gap-4">
+        <ThemeSwitch />
         <li>
           <Link href="/blog">블로그</Link>
         </li>
