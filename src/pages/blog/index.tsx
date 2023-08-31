@@ -1,6 +1,6 @@
 import { getDataBase } from "@/apis/notion";
 import IconText from "@/components/IconText";
-import { dateFormat } from "@/constants/format";
+import { dateFormat } from "@/libs/format";
 import { isFullPage } from "@notionhq/client";
 import { AiTwotoneCalendar } from "@react-icons/all-files/ai/AiTwotoneCalendar";
 import Link from "next/link";
