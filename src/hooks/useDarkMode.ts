@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useTheme } from "next-themes";
 
 const useDarkMode = () => {
-  const [isThemeDark, setIsThemeDark] = useState(true);
+  const { theme, setTheme } = useTheme();
 
   const toggleTheme = () => {
-    setIsThemeDark(!isThemeDark);
+    if (theme === "dark") {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
   };
 
   return {
-    isThemeDark,
+    theme,
     toggleTheme,
   };
 };
