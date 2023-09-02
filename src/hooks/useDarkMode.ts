@@ -1,10 +1,10 @@
 import { useTheme } from "next-themes";
 
 const useDarkMode = () => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
   const toggleTheme = () => {
-    if (theme === "dark") {
+    if (resolvedTheme === "dark") {
       setTheme("light");
     } else {
       setTheme("dark");
@@ -12,7 +12,7 @@ const useDarkMode = () => {
   };
 
   return {
-    theme,
+    resolvedTheme,
     toggleTheme,
   };
 };
