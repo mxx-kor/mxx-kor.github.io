@@ -10,9 +10,14 @@ import { ReactElement } from "react";
 import { NotionRenderer } from "react-notion-x";
 import dynamic from "next/dynamic";
 import { ExtendedRecordMap } from "notion-types";
+import useDarkMode from "@/hooks/useDarkMode";
+import useMounted from "@/hooks/useMounted";
 
 const Code = dynamic(() =>
   import("react-notion-x/build/third-party/code").then(m => m.Code),
+);
+const Collection = dynamic(() =>
+  import("react-notion-x/build/third-party/collection").then(m => m.Collection),
 );
 const Equation = dynamic(() =>
   import("react-notion-x/build/third-party/equation").then(m => m.Equation),
@@ -29,6 +34,7 @@ const Modal = dynamic(
     ssr: false,
   },
 );
+
 interface PostProps {
   post: GetPageResponse;
   recordMap: ExtendedRecordMap;
@@ -74,6 +80,10 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 }
 
 const Post = ({ post, recordMap }: PostProps) => {
+  const { mounted } = useMounted();
+  const { resolvedTheme } = useDarkMode();
+  const theme = resolvedTheme === "dark" ? true : false;
+
   const title =
     isFullPage(post) &&
     "rich_text" in post.properties.Title &&
@@ -88,16 +98,19 @@ const Post = ({ post, recordMap }: PostProps) => {
       <Head>
         <title>{title}</title>
       </Head>
-      <NotionRenderer
-        recordMap={recordMap}
-        darkMode={false}
-        components={{
-          Code,
-          Equation,
-          Modal,
-          Pdf,
-        }}
-      />
+      {!mounted ? null : (
+        <NotionRenderer
+          recordMap={recordMap}
+          darkMode={theme}
+          components={{
+            Code,
+            Collection,
+            Equation,
+            Modal,
+            Pdf,
+          }}
+        />
+      )}
       {repo && repoId && category && categoryId && (
         <Comments
           repo={repo}
