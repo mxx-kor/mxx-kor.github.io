@@ -1,26 +1,26 @@
 import useDarkMode from "@/hooks/useDarkMode";
-import React, { useEffect, useState } from "react";
+import useMounted from "@/hooks/useMounted";
+import React from "react";
+import { FiSun } from "@react-icons/all-files/fi/FiSun";
+import { FiMoon } from "@react-icons/all-files/fi/FiMoon";
+import IconButton from "./IconButton";
 
 const ThemeSwitch = () => {
-  const [mounted, setMounted] = useState(false);
-  const { theme, toggleTheme } = useDarkMode();
-
-  // useEffect only runs on the client, so now we can safely show the UI
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const { mounted } = useMounted();
+  const { resolvedTheme, toggleTheme } = useDarkMode();
 
   if (!mounted) {
-    return <div>hi</div>;
+    return null;
   }
 
   return (
-    <button
-      className="flex h-9 w-9 items-center justify-center rounded-lg transition-all hover:bg-gray"
+    <IconButton
+      className="text-xl text-yellow"
       onClick={toggleTheme}
+      aria-label="Toggle Theme Button"
     >
-      {theme}
-    </button>
+      {resolvedTheme === "dark" ? <FiSun /> : <FiMoon />}
+    </IconButton>
   );
 };
 

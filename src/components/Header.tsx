@@ -7,7 +7,7 @@ const Header = () => {
       <Link href="/" className="text-3xl">
         Minjae.log
       </Link>
-      <ul className="flex gap-4">
+      <ul className="flex gap-4 items-center">
         <ThemeSwitch />
         <li>
           <Link href="/blog">블로그</Link>
