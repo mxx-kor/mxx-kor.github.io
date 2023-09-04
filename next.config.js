@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
   env: {
     COMMENTS_REPO: "mxx-kor/minjae.github.io",
     COMMENTS_REPO_ID: "R_kgDOJ2XnQw",
@@ -7,6 +8,7 @@ const nextConfig = {
     COMMENTS_CATEGORY_ID: "DIC_kwDOJ2XnQ84CXxYD",
   },
   images: {
+    unoptimized: true,
     domains: ["s3.us-west-2.amazonaws.com"],
   },
 };
