@@ -12,6 +12,8 @@ import dynamic from "next/dynamic";
 import { ExtendedRecordMap } from "notion-types";
 import useDarkMode from "@/hooks/useDarkMode";
 import useMounted from "@/hooks/useMounted";
+import Link from "next/link";
+import Image from "next/image";
 
 const Code = dynamic(() =>
   import("react-notion-x/build/third-party/code").then(m => m.Code),
@@ -108,6 +110,8 @@ const Post = ({ post, recordMap }: PostProps) => {
             Equation,
             Modal,
             Pdf,
+            nextImage: Image,
+            nextLink: Link,
           }}
         />
       )}
