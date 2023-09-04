@@ -2,8 +2,10 @@ import { getDataBase, getNotionPage, getPost } from "@/apis/notion";
 import Comments from "@/components/Comments";
 import BaseLayout from "@/components/Layouts/BaseLayout";
 import SubLayout from "@/components/Layouts/SubLayout";
-import { isFullPage } from "@notionhq/client";
-import { GetPageResponse } from "@notionhq/client/build/src/api-endpoints";
+import {
+  GetPageResponse,
+  RichTextItemResponse,
+} from "@notionhq/client/build/src/api-endpoints";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
 import { ReactElement } from "react";
@@ -49,9 +51,11 @@ export const getStaticPaths = async () => {
     paths: results.map(post => {
       if ("properties" in post) {
         if ("title" in post.properties.Slug) {
+          const slugFirstTitle = post.properties.Slug
+            .title as RichTextItemResponse[];
           return {
             params: {
-              slug: post.properties.Slug.title[0].plain_text,
+              slug: slugFirstTitle[0].plain_text,
             },
           };
         }
@@ -65,9 +69,12 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   const slug = context.params && context.params.slug;
   const { results } = await getDataBase();
   const { id } = results.filter(post => {
-    if (!isFullPage(post)) return;
-    if ("title" in post.properties.Slug) {
-      return post.properties.Slug.title[0].plain_text === slug;
+    if ("properties" in post) {
+      if ("title" in post.properties.Slug) {
+        const slugFirstTitle = post.properties.Slug
+          .title as RichTextItemResponse[];
+        return slugFirstTitle[0].plain_text === slug;
+      }
     }
   })[0];
 
@@ -86,14 +93,19 @@ const Post = ({ post, recordMap }: PostProps) => {
   const { resolvedTheme } = useDarkMode();
   const theme = resolvedTheme === "dark" ? true : false;
 
-  const title =
-    isFullPage(post) &&
-    "rich_text" in post.properties.Title &&
-    post.properties.Title.rich_text[0].plain_text;
-  const repo = process.env.COMMENTS_REPO;
-  const repoId = process.env.COMMENTS_REPO_ID;
-  const category = process.env.COMMENTS_CATEGORY;
-  const categoryId = process.env.COMMENTS_CATEGORY_ID;
+  let title;
+  if ("properties" in post) {
+    if ("rich_text" in post.properties.Title) {
+      const docTitle = post.properties.Title
+        .rich_text as RichTextItemResponse[];
+      title = docTitle[0].plain_text;
+    }
+  }
+
+  const repo = process.env.NEXT_PUBLIC_COMMENTS_REPO;
+  const repoId = process.env.NEXT_PUBLIC_COMMENTS_REPO_ID;
+  const category = process.env.NEXT_PUBLIC_COMMENTS_CATEGORY;
+  const categoryId = process.env.NEXT_PUBLIC_COMMENTS_CATEGORY_ID;
 
   return (
     <>

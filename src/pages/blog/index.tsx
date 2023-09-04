@@ -1,7 +1,7 @@
 import { getDataBase } from "@/apis/notion";
 import IconText from "@/components/IconText";
 import { dateFormat } from "@/libs/format";
-import { isFullPage } from "@notionhq/client";
+import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
 import Link from "next/link";
 
@@ -18,11 +18,11 @@ type PostInfo = {
 export async function getStaticProps() {
   const db = await getDataBase();
   const posts = db.results.map(post => {
-    if (!isFullPage(post)) return;
+    const data = post as PageObjectResponse;
     const result = {
-      id: post.id,
-      properties: post.properties,
-      created_time: dateFormat(post.created_time),
+      id: data.id,
+      properties: data.properties,
+      created_time: dateFormat(data.created_time),
     };
     return result;
   });
