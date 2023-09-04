@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 env:
   NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
   NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
