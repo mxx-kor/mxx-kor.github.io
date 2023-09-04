@@ -2,9 +2,11 @@
   "name": "minjae.github.io",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mxx-kor.github.io/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "serve": "npx http-server out",
     "start": "next start",
     "lint": "next lint"
   },
