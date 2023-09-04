@@ -1,11 +1,15 @@
 import Link from "next/link";
 import ThemeSwitch from "./ThemeSwitch";
+import IconButton from "./IconButton";
+import { FiCloudLightning } from "@react-icons/all-files/fi/FiCloudLightning";
 
 const Header = () => {
   return (
     <header className="flex justify-between py-6">
       <Link href="/" className="text-3xl">
-        Minjae.log
+        <IconButton>
+          <FiCloudLightning />
+        </IconButton>
       </Link>
       <ul className="flex gap-4 items-center">
         <ThemeSwitch />

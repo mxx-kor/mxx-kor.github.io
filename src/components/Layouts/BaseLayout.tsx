@@ -7,7 +7,7 @@ const BaseLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Head>
-        <title>minjae.log</title>
+        <title>minjae blog</title>
         <link rel="icon" href="/vercel.svg" />
       </Head>
       <div className="container mx-auto max-w-screen-md">

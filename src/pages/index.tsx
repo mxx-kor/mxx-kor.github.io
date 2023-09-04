@@ -1,5 +1,5 @@
 const Home = () => {
-  return <div className="text-xl underline">Home 페이지 입니다.</div>;
+  return <div>개인 블로그를 작업중입니다.</div>;
 };
 
 export default Home;
