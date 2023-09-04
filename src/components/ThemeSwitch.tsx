@@ -1,6 +1,5 @@
 import useDarkMode from "@/hooks/useDarkMode";
 import useMounted from "@/hooks/useMounted";
-import React from "react";
 import { FiSun } from "@react-icons/all-files/fi/FiSun";
 import { FiMoon } from "@react-icons/all-files/fi/FiMoon";
 import IconButton from "./IconButton";

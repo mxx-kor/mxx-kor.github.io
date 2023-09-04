@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { useRouter } from "next/router";
 
 const SubLayout = ({ children }: { children: ReactNode }) => {

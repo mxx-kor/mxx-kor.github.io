@@ -1,5 +1,5 @@
 import { IconType } from "@react-icons/all-files";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 interface IconTextProps {
   Icon: IconType;
