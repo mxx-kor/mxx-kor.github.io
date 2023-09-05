@@ -8,14 +8,22 @@ import {
 } from "@notionhq/client/build/src/api-endpoints";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { NotionRenderer } from "react-notion-x";
 import dynamic from "next/dynamic";
 import { ExtendedRecordMap } from "notion-types";
 import useDarkMode from "@/hooks/useDarkMode";
-import useMounted from "@/hooks/useMounted";
 import Link from "next/link";
 import Image from "next/image";
+
+// core styles shared by all of react-notion-x (required)
+import "react-notion-x/src/styles.css";
+
+// used for code syntax highlighting (optional)
+import "prismjs/themes/prism-tomorrow.css";
+
+// used for rendering equations (optional)
+import "katex/dist/katex.min.css";
 
 const Code = dynamic(() =>
   import("react-notion-x/build/third-party/code").then(m => m.Code),
@@ -89,9 +97,8 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 }
 
 const Post = ({ post, recordMap }: PostProps) => {
-  const { mounted } = useMounted();
   const { resolvedTheme } = useDarkMode();
-  const theme = resolvedTheme === "dark" ? true : false;
+  const [theme, setTheme] = useState(true);
 
   let title;
   if ("properties" in post) {
@@ -102,26 +109,29 @@ const Post = ({ post, recordMap }: PostProps) => {
     }
   }
 
+  useEffect(() => {
+    const isDarkTheme = resolvedTheme === "dark" ? true : false;
+    setTheme(isDarkTheme);
+  }, [resolvedTheme]);
+
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
-      {!mounted ? null : (
-        <NotionRenderer
-          recordMap={recordMap}
-          darkMode={theme}
-          components={{
-            Code,
-            Collection,
-            Equation,
-            Modal,
-            Pdf,
-            nextImage: Image,
-            nextLink: Link,
-          }}
-        />
-      )}
+      <NotionRenderer
+        recordMap={recordMap}
+        darkMode={theme}
+        components={{
+          Code,
+          Collection,
+          Equation,
+          Modal,
+          Pdf,
+          nextImage: Image,
+          nextLink: Link,
+        }}
+      />
       <Comments />
     </>
   );
