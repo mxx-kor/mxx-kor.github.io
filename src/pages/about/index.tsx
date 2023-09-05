@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const About = () => {
   return (
-    <>
+    <main>
       <div>About 페이지입니다.</div>
       <Image
         src="/images/profile.png"
@@ -10,7 +10,7 @@ const About = () => {
         height={144}
         alt="Profile Photo"
       />
-    </>
+    </main>
   );
 };
 

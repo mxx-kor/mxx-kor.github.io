@@ -102,11 +102,6 @@ const Post = ({ post, recordMap }: PostProps) => {
     }
   }
 
-  const repo = process.env.NEXT_PUBLIC_COMMENTS_REPO;
-  const repoId = process.env.NEXT_PUBLIC_COMMENTS_REPO_ID;
-  const category = process.env.NEXT_PUBLIC_COMMENTS_CATEGORY;
-  const categoryId = process.env.NEXT_PUBLIC_COMMENTS_CATEGORY_ID;
-
   return (
     <>
       <Head>
@@ -127,14 +122,7 @@ const Post = ({ post, recordMap }: PostProps) => {
           }}
         />
       )}
-      {repo && repoId && category && categoryId && (
-        <Comments
-          repo={repo}
-          repoId={repoId}
-          category={category}
-          categoryId={categoryId}
-        />
-      )}
+      <Comments />
     </>
   );
 };

@@ -32,7 +32,7 @@ export async function getStaticProps() {
 
 const Blog = ({ posts }: { posts: PostInfo[] }) => {
   return (
-    <>
+    <main className="font-spoqa font-sans">
       <div className="text-3xl font-bold mb-3">Blog</div>
       <ul>
         {posts.map(({ id, created_time, properties }) => (
@@ -57,7 +57,7 @@ const Blog = ({ posts }: { posts: PostInfo[] }) => {
           </li>
         ))}
       </ul>
-    </>
+    </main>
   );
 };
 

@@ -1,14 +1,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useRef } from "react";
 
-interface CommentsProps {
-  repo: string;
-  repoId: string;
-  category: string;
-  categoryId: string;
-}
-
-const Comments = ({ repo, repoId, category, categoryId }: CommentsProps) => {
+const Comments = () => {
   const ref = useRef<HTMLElement>(null);
   const { resolvedTheme } = useTheme();
 
@@ -21,10 +14,10 @@ const Comments = ({ repo, repoId, category, categoryId }: CommentsProps) => {
     script.src = "https://giscus.app/client.js";
     script.async = true;
     script.crossOrigin = "anonymous";
-    script.setAttribute("data-repo", repo);
-    script.setAttribute("data-repo-id", repoId);
-    script.setAttribute("data-category", category);
-    script.setAttribute("data-category-id", categoryId);
+    script.setAttribute("data-repo", "mxx-kor/mxx-kor.github.io");
+    script.setAttribute("data-repo-id", "R_kgDOJ2XnQw");
+    script.setAttribute("data-category", "Comments");
+    script.setAttribute("data-category-id", "DIC_kwDOJ2XnQ84CXxYD");
     script.setAttribute("data-mapping", "title");
     script.setAttribute("data-strict", "0");
     script.setAttribute("data-reactions-enabled", "1");
