@@ -1,19 +1,10 @@
 import { getDataBase } from "@/apis/notion";
 import IconText from "@/components/IconText";
 import { dateFormat } from "@/libs/format";
+import { PostInfo } from "@/types/notion";
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
 import Link from "next/link";
-
-type PostInfo = {
-  id: string;
-  created_time: string;
-  properties: {
-    Slug: { id: string; title: { plain_text: string }[] };
-    Title: { id: string; rich_text: { plain_text: string }[] };
-    Tags: { id: string; multi_select: { id: string; name: string }[] };
-  };
-};
 
 export async function getStaticProps() {
   const db = await getDataBase();

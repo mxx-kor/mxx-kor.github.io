@@ -2,12 +2,8 @@ import { getDataBase, getNotionPage, getPost } from "@/apis/notion";
 import Comments from "@/components/Comments";
 import BaseLayout from "@/components/Layouts/BaseLayout";
 import SubLayout from "@/components/Layouts/SubLayout";
-import {
-  GetPageResponse,
-  RichTextItemResponse,
-} from "@notionhq/client/build/src/api-endpoints";
+import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
 import { GetStaticPropsContext } from "next";
-import Head from "next/head";
 import { ReactElement, useEffect, useState } from "react";
 import { NotionRenderer } from "react-notion-x";
 import dynamic from "next/dynamic";
@@ -15,6 +11,8 @@ import { ExtendedRecordMap } from "notion-types";
 import useDarkMode from "@/hooks/useDarkMode";
 import Link from "next/link";
 import Image from "next/image";
+import { BlogSEO } from "@/components/SEO";
+import { PostInfo } from "@/types/notion";
 
 // core styles shared by all of react-notion-x (required)
 import "react-notion-x/src/styles.css";
@@ -48,7 +46,7 @@ const Modal = dynamic(
 );
 
 interface PostProps {
-  post: GetPageResponse;
+  post: PostInfo;
   recordMap: ExtendedRecordMap;
 }
 
@@ -100,15 +98,6 @@ const Post = ({ post, recordMap }: PostProps) => {
   const { resolvedTheme } = useDarkMode();
   const [theme, setTheme] = useState(true);
 
-  let title;
-  if ("properties" in post) {
-    if ("rich_text" in post.properties.Title) {
-      const docTitle = post.properties.Title
-        .rich_text as RichTextItemResponse[];
-      title = docTitle[0].plain_text;
-    }
-  }
-
   useEffect(() => {
     const isDarkTheme = resolvedTheme === "dark" ? true : false;
     setTheme(isDarkTheme);
@@ -116,9 +105,7 @@ const Post = ({ post, recordMap }: PostProps) => {
 
   return (
     <>
-      <Head>
-        <title>{title}</title>
-      </Head>
+      <BlogSEO {...post} />
       <NotionRenderer
         recordMap={recordMap}
         darkMode={theme}
