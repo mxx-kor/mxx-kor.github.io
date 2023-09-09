@@ -1,6 +1,35 @@
-import { siteConfig } from "@/config";
+import { defaultImage, siteConfig } from "@/config";
 import { PostInfo } from "@/types/notion";
 import { NextSeo } from "next-seo";
+
+interface PageSEOProps {
+  title?: string;
+  description: string;
+  path: string;
+  image?: string;
+}
+
+export const PageSEO = ({
+  title = siteConfig.title,
+  description,
+  path,
+  image = defaultImage,
+}: PageSEOProps) => {
+  const url = `${siteConfig.url}/${path}`;
+  return (
+    <NextSeo
+      title={title}
+      description={description}
+      canonical={url}
+      openGraph={{
+        url,
+        title,
+        description,
+        images: [{ url: image }],
+      }}
+    />
+  );
+};
 
 export const BlogSEO = ({ ...props }: PostInfo) => {
   const { properties, created_time, last_edited_time, cover } = props;
@@ -9,7 +38,7 @@ export const BlogSEO = ({ ...props }: PostInfo) => {
   const tags = properties.Tags.multi_select.map(tag => tag.name);
   const coverImage =
     cover === null
-      ? "https://avatars.githubusercontent.com/u/82329983?v=4"
+      ? defaultImage
       : cover.type === "external"
       ? cover.external.url
       : cover.file.url;

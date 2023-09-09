@@ -1,12 +1,15 @@
 import { DefaultSeoProps } from "next-seo";
 
+export const defaultImage =
+  "https://avatars.githubusercontent.com/u/82329983?v=4";
+
 export const siteConfig = {
   url: "https://mxx-kor.github.io",
   title: "minjae blog",
   description: "개발 과정에 겪거나 탐구한 내용들을 기록하는 공간입니다.",
   author: {
     name: "Minjae Kim",
-    photo: "https://avatars.githubusercontent.com/u/82329983?v=4",
+    photo: defaultImage,
     bio: "Frontend Engineer",
     contacts: {
       email: "minjae7728@gmail.com",
@@ -24,6 +27,13 @@ export const seoConfig: DefaultSeoProps = {
     locale: "ko-KR",
     url: siteConfig.url,
     siteName: siteConfig.title,
+    images: [
+      {
+        url: defaultImage,
+        width: 285,
+        height: 167,
+      },
+    ],
   },
   additionalMetaTags: [
     {
