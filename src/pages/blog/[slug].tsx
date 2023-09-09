@@ -97,6 +97,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 const Post = ({ post, recordMap }: PostProps) => {
   const { resolvedTheme } = useDarkMode();
   const [theme, setTheme] = useState(true);
+  const title = post.properties.Title.rich_text[0].plain_text;
 
   useEffect(() => {
     const isDarkTheme = resolvedTheme === "dark" ? true : false;
@@ -106,19 +107,22 @@ const Post = ({ post, recordMap }: PostProps) => {
   return (
     <>
       <BlogSEO {...post} />
-      <NotionRenderer
-        recordMap={recordMap}
-        darkMode={theme}
-        components={{
-          Code,
-          Collection,
-          Equation,
-          Modal,
-          Pdf,
-          nextImage: Image,
-          nextLink: Link,
-        }}
-      />
+      <article>
+        <h1 className="text-center text-3xl font-bold">{title}</h1>
+        <NotionRenderer
+          recordMap={recordMap}
+          darkMode={theme}
+          components={{
+            Code,
+            Collection,
+            Equation,
+            Modal,
+            Pdf,
+            nextImage: Image,
+            nextLink: Link,
+          }}
+        />
+      </article>
       <Comments />
     </>
   );

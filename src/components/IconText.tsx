@@ -10,7 +10,7 @@ interface IconTextProps {
 
 const IconText = ({ Icon, iconsize = 14, text, className }: IconTextProps) => {
   return (
-    <div className={`flex items-center ${className ?? "gap-1 text-sm"}`}>
+    <div className={`flex items-center ${className ?? "gap-1 text-xs"}`}>
       <Icon width={iconsize} height={iconsize} />
       <span>{text}</span>
     </div>

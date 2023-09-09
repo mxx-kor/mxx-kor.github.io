@@ -1,10 +1,8 @@
 import { getDataBase } from "@/apis/notion";
-import IconText from "@/components/IconText";
+import PostListItem from "@/components/PostListItem";
 import { dateFormat } from "@/libs/format";
 import { PostInfo } from "@/types/notion";
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
-import Link from "next/link";
 
 export async function getStaticProps() {
   const db = await getDataBase();
@@ -25,26 +23,10 @@ const Blog = ({ posts }: { posts: PostInfo[] }) => {
   return (
     <main className="font-spoqa font-sans">
       <div className="text-3xl font-bold mb-3">Blog</div>
-      <ul>
-        {posts.map(({ id, created_time, properties }) => (
-          <li key={id}>
-            <Link
-              className="text-2xl font-medium"
-              href={`/blog/${properties.Slug.title[0].plain_text}`}
-            >
-              {properties.Title.rich_text[0].plain_text}
-            </Link>
-            <IconText Icon={FiCalendar} text={created_time} />
-            <div>
-              {properties.Tags.multi_select.map(tag => (
-                <span
-                  className="border rounded-lg px-1 mr-2 text-sm"
-                  key={tag.id}
-                >
-                  {tag.name}
-                </span>
-              ))}
-            </div>
+      <ul className="mt-12 grid w-full gap-8 lg:grid-cols-2 lg:gap-12">
+        {posts.map(post => (
+          <li key={post.id}>
+            <PostListItem {...post} />
           </li>
         ))}
       </ul>
