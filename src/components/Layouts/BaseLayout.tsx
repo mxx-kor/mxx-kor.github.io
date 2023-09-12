@@ -3,7 +3,9 @@ import Header from "@/components/Header";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 import { DefaultSeo } from "next-seo";
-import { seoConfig } from "@/config";
+import { seoConfig, siteConfig } from "@/config";
+import Link from "next/link";
+import Contacts from "../Contacts";
 
 const BaseLayout = ({ children }: { children: ReactNode }) => {
   return (
@@ -15,7 +17,17 @@ const BaseLayout = ({ children }: { children: ReactNode }) => {
         <DefaultSeo {...seoConfig} />
         <Header />
         {children}
-        <footer>minjae Kim</footer>
+        <footer className="flex flex-col text-sm items-end">
+          <Contacts />
+          <p>
+            <span>© </span>
+            <Link href="/about">{siteConfig.author.name}</Link>
+            <span> Powered by </span>
+            <Link href="https://nextjs.org/">Next.js</Link>
+            <span>, </span>
+            <Link href="https://pages.github.com/">Github Pages</Link>
+          </p>
+        </footer>
       </div>
     </ThemeProvider>
   );
