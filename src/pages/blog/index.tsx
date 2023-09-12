@@ -1,5 +1,6 @@
 import { getDataBase } from "@/apis/notion";
 import PostListItem from "@/components/PostListItem";
+import Title from "@/components/base/Title";
 import { dateFormat } from "@/libs/format";
 import { PostInfo } from "@/types/notion";
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
@@ -21,8 +22,8 @@ export async function getStaticProps() {
 
 const Blog = ({ posts }: { posts: PostInfo[] }) => {
   return (
-    <main className="font-spoqa font-sans">
-      <div className="text-3xl font-bold mb-3">Blog</div>
+    <main>
+      <Title>Blog</Title>
       <ul className="mt-12 grid w-full gap-8 lg:grid-cols-2 lg:gap-12">
         {posts.map(post => (
           <li key={post.id}>

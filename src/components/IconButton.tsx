@@ -1,10 +1,8 @@
-import { ComponentProps } from "react";
-
 const IconButton = ({
   className,
   type = "button",
   ...props
-}: ComponentProps<"button">) => {
+}: React.ComponentProps<"button">) => {
   return (
     <button
       aria-label="icon-button"
