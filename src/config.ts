@@ -14,8 +14,24 @@ export const siteConfig = {
     contacts: {
       email: "minjae7728@gmail.com",
       github: "mxx-kor",
+      linkedin:
+        "https://www.linkedin.com/in/%EB%AF%BC%EC%9E%AC-%EA%B9%80-35a409204/",
     },
   },
+  menu: [
+    {
+      label: "Blog",
+      path: "/blog",
+    },
+    {
+      label: "Archives",
+      path: "/archives",
+    },
+    {
+      label: "About",
+      path: "/about",
+    },
+  ],
 };
 
 export const seoConfig: DefaultSeoProps = {

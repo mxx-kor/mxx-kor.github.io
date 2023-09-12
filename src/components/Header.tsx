@@ -2,6 +2,7 @@ import Link from "next/link";
 import ThemeSwitch from "./ThemeSwitch";
 import IconButton from "./IconButton";
 import { FiCloudLightning } from "@react-icons/all-files/fi/FiCloudLightning";
+import { siteConfig } from "@/config";
 
 const Header = () => {
   return (
@@ -12,13 +13,14 @@ const Header = () => {
         </IconButton>
       </Link>
       <ul className="flex gap-4 items-center">
-        <ThemeSwitch />
         <li>
-          <Link href="/blog">블로그</Link>
+          <ThemeSwitch />
         </li>
-        <li>
-          <Link href="/about">about</Link>
-        </li>
+        {siteConfig.menu.map(({ label, path }) => (
+          <li key={label}>
+            <Link href={path}>{label}</Link>
+          </li>
+        ))}
       </ul>
     </header>
   );
