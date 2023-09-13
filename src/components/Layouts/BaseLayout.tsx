@@ -6,6 +6,7 @@ import { DefaultSeo } from "next-seo";
 import { seoConfig, siteConfig } from "@/config";
 import Link from "next/link";
 import Contacts from "../Contacts";
+import Divider from "../base/Divider";
 
 const BaseLayout = ({ children }: { children: ReactNode }) => {
   return (
@@ -13,11 +14,12 @@ const BaseLayout = ({ children }: { children: ReactNode }) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <div className="container mx-auto max-w-screen-md font-spoqa font-sans">
+      <div className="container mx-auto max-w-screen-md font-spoqa">
         <DefaultSeo {...seoConfig} />
         <Header />
         {children}
-        <footer className="flex flex-col text-sm items-end">
+        <Divider type="horizontal" className="my-8" />
+        <footer className="mb-10 flex flex-col items-end text-sm">
           <Contacts />
           <p>
             <span>© </span>
