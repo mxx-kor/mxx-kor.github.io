@@ -7,7 +7,7 @@ const Contacts = () => {
     author: { contacts },
   } = siteConfig;
   return (
-    <div className="flex gap-2 text-xl">
+    <div className="mb-2 flex gap-2 text-xl">
       {Object.keys(contacts).map(sns => {
         const assertedSns = sns as keyof typeof contacts;
         let contact = contacts[assertedSns];
