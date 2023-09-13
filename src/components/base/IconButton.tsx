@@ -1,3 +1,5 @@
+import { cn } from "@/libs/core";
+
 const IconButton = ({
   className,
   type = "button",
@@ -7,7 +9,10 @@ const IconButton = ({
     <button
       aria-label="icon-button"
       type={type}
-      className={`${className} flex h-9 w-9 items-center justify-center rounded-lg transition-all hover:bg-gray`}
+      className={cn(
+        "flex h-9 w-9 items-center justify-center rounded-lg transition-all hover:bg-gray",
+        className,
+      )}
       {...props}
     />
   );

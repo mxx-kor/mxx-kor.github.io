@@ -22,6 +22,7 @@ import "prismjs/themes/prism-tomorrow.css";
 
 // used for rendering equations (optional)
 import "katex/dist/katex.min.css";
+import Title from "@/components/base/Title";
 
 const Code = dynamic(() =>
   import("react-notion-x/build/third-party/code").then(m => m.Code),
@@ -108,7 +109,7 @@ const Post = ({ post, recordMap }: PostProps) => {
     <>
       <BlogSEO {...post} />
       <article>
-        <h1 className="text-center text-3xl font-bold">{title}</h1>
+        <Title className="text-center text-3xl font-bold">{title}</Title>
         <NotionRenderer
           recordMap={recordMap}
           darkMode={theme}

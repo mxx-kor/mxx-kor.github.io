@@ -1,5 +1,5 @@
 import Link from "next/link";
-import IconText from "./IconText";
+import IconText from "./base/IconText";
 import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
 import { PostInfo } from "@/types/notion";
 
@@ -19,7 +19,7 @@ const PostListItem = ({ ...post }: PostInfo) => {
       <div className="flex justify-between">
         <div>
           {properties.Tags.multi_select.map(tag => (
-            <span className="border rounded-lg px-1 mr-2 text-sm" key={tag.id}>
+            <span className="mr-2 rounded-lg border px-1 text-sm" key={tag.id}>
               {tag.name}
             </span>
           ))}

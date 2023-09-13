@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ThemeSwitch from "./ThemeSwitch";
-import IconButton from "./IconButton";
+import IconButton from "./base/IconButton";
 import { FiCloudLightning } from "@react-icons/all-files/fi/FiCloudLightning";
 import { siteConfig } from "@/config";
 
@@ -12,7 +12,7 @@ const Header = () => {
           <FiCloudLightning />
         </IconButton>
       </Link>
-      <ul className="flex gap-4 items-center">
+      <ul className="flex items-center gap-4">
         <li>
           <ThemeSwitch />
         </li>

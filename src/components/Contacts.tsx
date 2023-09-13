@@ -16,11 +16,9 @@ const Contacts = () => {
         if (sns === "github") contact = `https://github.com/${contact}`;
 
         return (
-          <>
-            <Link href={contact}>
-              <ContactIcons contact={assertedSns} />
-            </Link>
-          </>
+          <Link key={sns} href={contact}>
+            <ContactIcons contact={assertedSns} />
+          </Link>
         );
       })}
     </div>
