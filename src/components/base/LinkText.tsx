@@ -8,7 +8,11 @@ const LinkText = ({
   return (
     <Link
       {...props}
-      className={cn("text-mute transition-all hover:text-primary", className)}
+      className={cn(
+        // prettier-ignore
+        "text-mute hover:text-primary inline-block transition-all",
+        className,
+      )}
     />
   );
 };

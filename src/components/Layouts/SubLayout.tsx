@@ -7,7 +7,7 @@ import IconButton from "../base/IconButton";
 const SubLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
-      <Link href="/blog" className="hover:bg-gray">
+      <Link href="/blog" className="hover:bg-gray my-3 inline-block ">
         <IconButton className="w-32">
           <IconText
             Icon={RiArrowGoBackFill}
