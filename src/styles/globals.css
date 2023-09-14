@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .text-primary {
+    @apply text-neutral-900 dark:text-neutral-200;
+  }
+
+  .text-secondary {
+    @apply text-neutral-700 dark:text-neutral-300;
+  }
+
+  .text-tertiary {
+    @apply text-neutral-600 dark:text-neutral-400;
+  }
+
+  .text-mute {
+    @apply text-neutral-500 dark:text-neutral-400;
+  }
+
+  .bg-primary {
+    @apply bg-neutral-50 dark:bg-neutral-900;
+  }
+}

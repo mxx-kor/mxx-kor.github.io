@@ -10,7 +10,7 @@ const IconButton = ({
       aria-label="icon-button"
       type={type}
       className={cn(
-        "flex h-9 w-9 items-center justify-center rounded-lg transition-all hover:bg-gray",
+        "flex h-9 w-9 items-center justify-center rounded-lg transition-all hover:bg-neutral-400",
         className,
       )}
       {...props}

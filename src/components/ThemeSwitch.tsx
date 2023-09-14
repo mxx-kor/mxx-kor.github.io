@@ -14,7 +14,7 @@ const ThemeSwitch = () => {
 
   return (
     <IconButton
-      className="text-xl text-yellow"
+      className="text-xl text-yellow-400 dark:text-yellow-300"
       onClick={toggleTheme}
       aria-label="Toggle Theme Button"
     >
