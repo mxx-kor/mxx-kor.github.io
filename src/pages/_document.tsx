@@ -4,7 +4,7 @@ const MyDocument = () => {
   return (
     <Html lang="ko">
       <Head />
-      <body>
+      <body className="text-primary bg-primary transition-[background]">
         <Main />
         <NextScript />
       </body>
