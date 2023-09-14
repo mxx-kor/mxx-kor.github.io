@@ -1,12 +1,21 @@
 import { ReactNode } from "react";
-import { useRouter } from "next/router";
+import Link from "next/link";
+import { RiArrowGoBackFill } from "@react-icons/all-files/ri/RiArrowGoBackFill";
+import IconText from "../base/IconText";
+import IconButton from "../base/IconButton";
 
 const SubLayout = ({ children }: { children: ReactNode }) => {
-  const router = useRouter();
-
   return (
     <>
-      <button onClick={() => router.back()}>뒤로 가기</button>
+      <Link href="/blog" className="hover:bg-gray">
+        <IconButton className="w-32">
+          <IconText
+            Icon={RiArrowGoBackFill}
+            text="Back to posts"
+            className="text-md gap-1"
+          />
+        </IconButton>
+      </Link>
       {children}
     </>
   );
