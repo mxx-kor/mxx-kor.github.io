@@ -3,6 +3,11 @@ export type PostInfo = {
   created_time: string;
   last_edited_time: string;
   properties: {
+    Main: {
+      checkbox: boolean;
+      id: string;
+      type: "checkbox";
+    };
     Slug: { id: string; type: "title"; title: { plain_text: string }[] };
     Title: {
       id: string;

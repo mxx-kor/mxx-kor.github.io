@@ -1,12 +1,38 @@
+import { getDataBase } from "@/apis/notion";
+import PostItemCard from "@/components/PostItemCard";
 import IconText from "@/components/base/IconText";
 import LinkText from "@/components/base/LinkText";
 import PlainText from "@/components/base/PlainText";
 import Title from "@/components/base/Title";
+import { dateFormat } from "@/libs/format";
+import { PostInfo } from "@/types/notion";
+import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import { RiMoreFill } from "@react-icons/all-files/ri/RiMoreFill";
+import { Fragment } from "react";
 
-const Home = () => {
+export async function getStaticProps() {
+  const db = await getDataBase();
+  const posts = db.results.map(post => {
+    const data = post as PageObjectResponse;
+    const result = {
+      id: data.id,
+      properties: data.properties,
+      created_time: dateFormat(data.created_time),
+      cover: data.cover,
+    };
+    return result;
+  });
+
+  return { props: { posts } };
+}
+
+const Home = ({ posts }: { posts: PostInfo[] }) => {
+  const selectedPosts = posts
+    .filter(post => post.properties.Main.checkbox === true)
+    .slice(0, 4);
+
   return (
-    <>
+    <main>
       <section>
         <Title className="mt-6">👋 안녕하세요, 개발자 김민재입니다.</Title>
         <PlainText className="text-secondary">
@@ -24,7 +50,16 @@ const Home = () => {
           />
         </LinkText>
       </section>
-    </>
+      <section className="mt-16">
+        <div className="grid gap-6 md:grid-cols-4">
+          {selectedPosts.map(selectedPost => (
+            <Fragment key={selectedPost.id}>
+              <PostItemCard {...selectedPost} />
+            </Fragment>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 };
 
