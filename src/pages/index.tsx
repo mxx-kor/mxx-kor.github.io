@@ -51,7 +51,7 @@ const Home = ({ posts }: { posts: PostInfo[] }) => {
         </LinkText>
       </section>
       <section className="mt-16">
-        <div className="grid gap-6 md:grid-cols-4">
+        <div className="grid gap-6 md:grid-cols-3">
           {selectedPosts.map(selectedPost => (
             <Fragment key={selectedPost.id}>
               <PostItemCard {...selectedPost} />
