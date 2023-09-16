@@ -14,7 +14,7 @@ const BaseLayout = ({ children }: { children: ReactNode }) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <div className="container mx-auto max-w-screen-md font-spoqa">
+      <div className="container mx-auto max-w-screen-md px-6 font-spoqa">
         <DefaultSeo {...seoConfig} />
         <Header />
         {children}
