@@ -3,6 +3,7 @@ import PostItemCard from "@/components/PostItemCard";
 import IconText from "@/components/base/IconText";
 import LinkText from "@/components/base/LinkText";
 import PlainText from "@/components/base/PlainText";
+import SubTitle from "@/components/base/SubTitle";
 import Title from "@/components/base/Title";
 import { dateFormat } from "@/libs/format";
 import { PostInfo } from "@/types/notion";
@@ -50,14 +51,25 @@ const Home = ({ posts }: { posts: PostInfo[] }) => {
           />
         </LinkText>
       </section>
-      <section className="mt-16">
-        <div className="grid gap-6 md:grid-cols-3">
+      <section className="mt-6">
+        <SubTitle className="mb-4">
+          <i>Featured.</i>
+        </SubTitle>
+        <div className="mb-4 grid gap-6 md:grid-cols-3">
           {selectedPosts.map(selectedPost => (
             <Fragment key={selectedPost.id}>
               <PostItemCard {...selectedPost} />
             </Fragment>
           ))}
         </div>
+        <LinkText href="/blog" className="text-sm">
+          <IconText
+            Icon={RiMoreFill}
+            iconsize={24}
+            text="Check all posts"
+            className="text-md gap-1"
+          />
+        </LinkText>
       </section>
     </main>
   );
