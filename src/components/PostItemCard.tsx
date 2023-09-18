@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import IconText from "./base/IconText";
 import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
+import { motion } from "framer-motion";
+import { fadeInUp } from "@/libs/animations";
 
 const PostItemCard = ({ created_time, properties, cover }: PostInfo) => {
   const slug = properties.Slug.title[0].plain_text;
@@ -17,11 +19,13 @@ const PostItemCard = ({ created_time, properties, cover }: PostInfo) => {
       : cover.file.url;
 
   return (
-    <Link
-      href={`/blog/${slug}`}
-      className="overflow-hidden rounded-xl bg-neutral-200 dark:bg-neutral-800"
-    >
-      <div>
+    <Link href={`/blog/${slug}`} className="overflow-hidden rounded-xl">
+      <motion.div
+        variants={fadeInUp}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="relative"
+      >
         <Image
           src={coverImage}
           alt={title}
@@ -30,13 +34,15 @@ const PostItemCard = ({ created_time, properties, cover }: PostInfo) => {
           className="h-64 w-full object-cover"
           draggable={false}
         />
-      </div>
-      <div className="p-6">
-        <div className="mb-2 flex w-full items-end">
-          <IconText Icon={FiCalendar} text={created_time} />
+        <div className="absolute bottom-2 w-full px-6 py-4 text-neutral-100">
+          <p className="mb-2 text-xl font-bold tracking-tight md:text-lg">
+            {title}
+          </p>
+          <div className="flex justify-end">
+            <IconText Icon={FiCalendar} text={created_time} />
+          </div>
         </div>
-        <p className="text-xl font-bold tracking-tight md:text-lg">{title}</p>
-      </div>
+      </motion.div>
     </Link>
   );
 };
