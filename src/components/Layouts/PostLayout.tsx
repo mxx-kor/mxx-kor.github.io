@@ -3,10 +3,12 @@ import Link from "next/link";
 import { RiArrowGoBackFill } from "@react-icons/all-files/ri/RiArrowGoBackFill";
 import IconText from "../base/IconText";
 import IconButton from "../base/IconButton";
+import ScrollProgressBar from "../ScrollProgressBar";
 
 const SubLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
+      <ScrollProgressBar />
       <Link href="/blog" className="hover:bg-gray my-3 inline-block ">
         <IconButton className="w-32">
           <IconText

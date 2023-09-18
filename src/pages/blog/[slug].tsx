@@ -1,7 +1,7 @@
 import { getDataBase, getNotionPage, getPost } from "@/apis/notion";
 import Comments from "@/components/Comments";
 import BaseLayout from "@/components/Layouts/BaseLayout";
-import SubLayout from "@/components/Layouts/SubLayout";
+import PostLayout from "@/components/Layouts/PostLayout";
 import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
 import { GetStaticPropsContext } from "next";
 import { ReactElement, useEffect, useState } from "react";
@@ -13,6 +13,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { BlogSEO } from "@/components/SEO";
 import { PostInfo } from "@/types/notion";
+import Title from "@/components/base/Title";
 
 // core styles shared by all of react-notion-x (required)
 import "react-notion-x/src/styles.css";
@@ -22,7 +23,6 @@ import "prismjs/themes/prism-tomorrow.css";
 
 // used for rendering equations (optional)
 import "katex/dist/katex.min.css";
-import Title from "@/components/base/Title";
 
 const Code = dynamic(() =>
   import("react-notion-x/build/third-party/code").then(m => m.Code),
@@ -132,7 +132,7 @@ const Post = ({ post, recordMap }: PostProps) => {
 Post.getLayout = function getLayout(page: ReactElement) {
   return (
     <BaseLayout>
-      <SubLayout>{page}</SubLayout>
+      <PostLayout>{page}</PostLayout>
     </BaseLayout>
   );
 };
