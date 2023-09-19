@@ -14,6 +14,7 @@
     "@notionhq/client": "^2.2.6",
     "@react-icons/all-files": "^4.1.0",
     "framer-motion": "^10.16.4",
+    "lodash.debounce": "^4.0.8",
     "next": "13.4.7",
     "next-seo": "^6.1.0",
     "next-themes": "^0.2.1",
@@ -25,6 +26,7 @@
     "react-notion-x": "^6.16.0"
   },
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.7",
     "@types/node": "20.3.3",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
