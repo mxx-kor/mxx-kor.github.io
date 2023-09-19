@@ -5,6 +5,7 @@ import { PostInfo } from "@/types/notion";
 
 const PostListItem = ({ ...post }: PostInfo) => {
   const { properties, created_time } = post;
+
   return (
     <>
       <Link
