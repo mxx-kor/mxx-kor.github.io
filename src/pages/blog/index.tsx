@@ -4,9 +4,11 @@ import PlainText from "@/components/base/PlainText";
 import TextInput from "@/components/base/TextInput";
 import Title from "@/components/base/Title";
 import useSearch from "@/hooks/useSearch";
+import { fadeInUp, staggerChild } from "@/libs/animations";
 import { dateFormat } from "@/libs/format";
 import { PostInfo } from "@/types/notion";
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
+import { motion } from "framer-motion";
 
 export async function getStaticProps() {
   const db = await getDataBase();
@@ -39,8 +41,13 @@ const Blog = ({ posts }: { posts: PostInfo[] }) => {
   );
 
   return (
-    <main>
-      <Title className="text-4xl">Blog</Title>
+    <motion.main
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={staggerChild}
+    >
+      <Title className="my-6 text-4xl">Blog</Title>
       <TextInput
         placeholder="포스트 제목, 태그로 검색"
         onChange={handleSearchTerm}
@@ -52,14 +59,17 @@ const Blog = ({ posts }: { posts: PostInfo[] }) => {
           의 포스트가 있습니다.
         </PlainText>
       )}
-      <ul className="grid w-full gap-8 lg:grid-cols-2 lg:gap-12">
+      <motion.ul
+        variants={staggerChild}
+        className="grid w-full gap-8 lg:grid-cols-2 lg:gap-12"
+      >
         {filteredPosts.map(post => (
-          <li key={post.id}>
+          <motion.li key={post.id} variants={fadeInUp}>
             <PostListItem {...post} />
-          </li>
+          </motion.li>
         ))}
-      </ul>
-    </main>
+      </motion.ul>
+    </motion.main>
   );
 };
 
