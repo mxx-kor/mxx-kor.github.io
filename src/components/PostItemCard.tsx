@@ -6,17 +6,22 @@ import IconText from "./base/IconText";
 import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/libs/animations";
+import { unsplashImages } from "@/libs/images";
 
-const PostItemCard = ({ created_time, properties, cover }: PostInfo) => {
+interface postItemCardProps {
+  idx: number;
+}
+
+const PostItemCard = ({
+  created_time,
+  properties,
+  cover,
+  idx,
+}: postItemCardProps & PostInfo) => {
   const slug = properties.Slug.title[0].plain_text;
   const title = properties.Title.rich_text[0].plain_text;
 
-  const coverImage =
-    cover === null
-      ? defaultImage
-      : cover.type === "external"
-      ? cover.external.url
-      : cover.file.url;
+  const coverImage = cover === null ? defaultImage : unsplashImages[idx];
 
   return (
     <Link href={`/blog/${slug}`} className="overflow-hidden rounded-xl">
@@ -31,7 +36,7 @@ const PostItemCard = ({ created_time, properties, cover }: PostInfo) => {
           alt={title}
           width={300}
           height={300}
-          className="h-64 w-full object-cover"
+          className="h-64 w-full rounded-xl object-cover"
           draggable={false}
         />
         <div className="absolute bottom-2 w-full px-6 py-4 text-neutral-100">

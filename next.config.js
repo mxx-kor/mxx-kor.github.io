@@ -1,10 +1,11 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withExportImages = require("next-export-optimize-images");
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = withExportImages({
   output: "export",
   images: {
-    unoptimized: true,
-    domains: ["s3.us-west-2.amazonaws.com"],
+    deviceSizes: [640, 960, 1280, 1600, 1920],
   },
-};
+});
 
 module.exports = nextConfig;
