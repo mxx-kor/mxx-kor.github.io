@@ -34,7 +34,8 @@ export const PageSEO = ({
 export const BlogSEO = ({ ...props }: PostInfo) => {
   const { properties, created_time, last_edited_time, cover } = props;
   const title = properties.Title.rich_text[0].plain_text;
-  const summary = properties.Summary.rich_text[0].plain_text;
+  const summary =
+    properties.Summary.rich_text[0]?.plain_text || siteConfig.description;
   const tags = properties.Tags.multi_select.map(tag => tag.name);
   const coverImage =
     cover === null
