@@ -10,7 +10,7 @@ import { PostInfo } from "@/types/notion";
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import { RiMoreFill } from "@react-icons/all-files/ri/RiMoreFill";
 import { Fragment } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeIn, staggerChild } from "@/libs/animations";
 
 export async function getStaticProps() {
@@ -36,9 +36,9 @@ const Home = ({ posts }: { posts: PostInfo[] }) => {
 
   return (
     <main>
-      <motion.section initial="initial" animate="animate">
+      <m.section initial="initial" animate="animate">
         <Title className="mt-6">👋 안녕하세요, 개발자 김민재입니다.</Title>
-        <motion.div variants={fadeIn}>
+        <m.div variants={fadeIn}>
           <PlainText className="text-secondary">
             개발 과정에 마주하는 다양한 문제를 해결하는 것을 좋아합니다.
           </PlainText>
@@ -53,9 +53,9 @@ const Home = ({ posts }: { posts: PostInfo[] }) => {
               className="text-md gap-1"
             />
           </LinkText>
-        </motion.div>
-      </motion.section>
-      <motion.section
+        </m.div>
+      </m.section>
+      <m.section
         variants={fadeIn}
         initial="initial"
         animate="animate"
@@ -64,7 +64,7 @@ const Home = ({ posts }: { posts: PostInfo[] }) => {
         <SubTitle className="mb-4">
           <i>Featured.</i>
         </SubTitle>
-        <motion.div
+        <m.div
           variants={staggerChild}
           className="mb-4 grid gap-6 md:grid-cols-3"
         >
@@ -73,7 +73,7 @@ const Home = ({ posts }: { posts: PostInfo[] }) => {
               <PostItemCard {...selectedPost} idx={idx} />
             </Fragment>
           ))}
-        </motion.div>
+        </m.div>
         <LinkText href="/blog" className="text-sm">
           <IconText
             Icon={RiMoreFill}
@@ -82,7 +82,7 @@ const Home = ({ posts }: { posts: PostInfo[] }) => {
             className="text-md gap-1"
           />
         </LinkText>
-      </motion.section>
+      </m.section>
     </main>
   );
 };

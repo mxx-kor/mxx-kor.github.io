@@ -4,6 +4,7 @@ import BaseLayout from "@/components/Layouts/BaseLayout";
 import { NextPage } from "next";
 import { ReactElement, ReactNode } from "react";
 import Font from "@/components/Font";
+import { LazyMotion, domAnimation } from "framer-motion";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -19,7 +20,9 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   return getLayout(
     <>
       <Font />
-      <Component {...pageProps} />
+      <LazyMotion features={domAnimation}>
+        <Component {...pageProps} />
+      </LazyMotion>
     </>,
   );
 };

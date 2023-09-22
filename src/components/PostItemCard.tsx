@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import IconText from "./base/IconText";
 import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { fadeInUp } from "@/libs/animations";
 import { unsplashImages } from "@/libs/images";
 
@@ -25,7 +25,7 @@ const PostItemCard = ({
 
   return (
     <Link href={`/blog/${slug}`} className="overflow-hidden rounded-xl">
-      <motion.div
+      <m.div
         variants={fadeInUp}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
@@ -47,7 +47,7 @@ const PostItemCard = ({
             <IconText Icon={FiCalendar} text={created_time} />
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </Link>
   );
 };

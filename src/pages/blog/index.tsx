@@ -8,7 +8,7 @@ import { fadeInUp, staggerChild } from "@/libs/animations";
 import { dateFormat } from "@/libs/format";
 import { PostInfo } from "@/types/notion";
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 export async function getStaticProps() {
   const db = await getDataBase();
@@ -41,7 +41,7 @@ const Blog = ({ posts }: { posts: PostInfo[] }) => {
   );
 
   return (
-    <motion.main
+    <m.main
       initial="initial"
       animate="animate"
       exit="exit"
@@ -59,17 +59,17 @@ const Blog = ({ posts }: { posts: PostInfo[] }) => {
           의 포스트가 있습니다.
         </PlainText>
       )}
-      <motion.ul
+      <m.ul
         variants={staggerChild}
         className="grid w-full gap-8 lg:grid-cols-2 lg:gap-12"
       >
         {filteredPosts.map(post => (
-          <motion.li key={post.id} variants={fadeInUp}>
+          <m.li key={post.id} variants={fadeInUp} className="group">
             <PostListItem {...post} />
-          </motion.li>
+          </m.li>
         ))}
-      </motion.ul>
-    </motion.main>
+      </m.ul>
+    </m.main>
   );
 };
 
