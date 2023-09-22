@@ -14,11 +14,7 @@ export type PostInfo = {
       type: "rich_text";
       rich_text: { plain_text: string }[];
     };
-    Tags: {
-      id: string;
-      type: "multi_select";
-      multi_select: { id: string; name: string; color: string }[];
-    };
+    Tags: TagType;
     Summary: {
       id: string;
       type: "rich_text";
@@ -27,6 +23,14 @@ export type PostInfo = {
   };
   cover: ExternalType | FileType;
 };
+
+type TagType = {
+  id: string;
+  type: "multi_select";
+  multi_select: MultiSelectType[];
+};
+
+export type MultiSelectType = { id: string; name: string; color: string };
 
 type ExternalType = {
   external: {

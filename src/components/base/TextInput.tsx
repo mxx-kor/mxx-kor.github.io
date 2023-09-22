@@ -6,7 +6,7 @@ const TextInput = ({ className, ...props }: ComponentProps<"input">) => {
     <input
       type="text"
       className={cn(
-        "placeholder:text-tertiary mb-8 w-full rounded-md border px-4 py-2 transition-all",
+        "placeholder:text-tertiary mb-8 w-full rounded-md border px-4 py-2 transition",
         "border-stone-200 bg-stone-50 dark:border-stone-900 dark:bg-stone-800",
         "focus:outline-none focus:ring-1 focus:ring-stone-400",
         className,
