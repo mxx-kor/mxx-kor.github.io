@@ -1,5 +1,6 @@
 import { getDataBase } from "@/apis/notion";
 import PostListItem from "@/components/PostListItem";
+import { PageSEO } from "@/components/SEO";
 import PlainText from "@/components/base/PlainText";
 import TextInput from "@/components/base/TextInput";
 import Title from "@/components/base/Title";
@@ -41,35 +42,38 @@ const Blog = ({ posts }: { posts: PostInfo[] }) => {
   );
 
   return (
-    <m.main
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      variants={staggerChild}
-    >
-      <Title className="my-6 text-4xl">Blog</Title>
-      <TextInput
-        placeholder="포스트 제목, 태그로 검색"
-        onChange={handleSearchTerm}
-      />
-      {searchTerm && (
-        <PlainText>
-          총{" "}
-          <span className="text-primary font-bold">{`${filteredPosts.length}개`}</span>{" "}
-          의 포스트가 있습니다.
-        </PlainText>
-      )}
-      <m.ul
+    <>
+      <PageSEO path="blog" />
+      <m.main
+        initial="initial"
+        animate="animate"
+        exit="exit"
         variants={staggerChild}
-        className="grid w-full gap-8 lg:grid-cols-2 lg:gap-12"
       >
-        {filteredPosts.map(post => (
-          <m.li key={post.id} variants={fadeInUp} className="group">
-            <PostListItem {...post} />
-          </m.li>
-        ))}
-      </m.ul>
-    </m.main>
+        <Title className="my-6 text-4xl">Blog</Title>
+        <TextInput
+          placeholder="포스트 제목, 태그로 검색"
+          onChange={handleSearchTerm}
+        />
+        {searchTerm && (
+          <PlainText>
+            총{" "}
+            <span className="text-primary font-bold">{`${filteredPosts.length}개`}</span>{" "}
+            의 포스트가 있습니다.
+          </PlainText>
+        )}
+        <m.ul
+          variants={staggerChild}
+          className="grid w-full gap-8 lg:grid-cols-2 lg:gap-12"
+        >
+          {filteredPosts.map(post => (
+            <m.li key={post.id} variants={fadeInUp} className="group">
+              <PostListItem {...post} />
+            </m.li>
+          ))}
+        </m.ul>
+      </m.main>
+    </>
   );
 };
 

@@ -1,7 +1,6 @@
 import { cn } from "@/libs/core";
-import { ComponentProps } from "react";
 
-const Badge = ({ className, ...props }: ComponentProps<"span">) => {
+const Badge = ({ className, ...props }: React.ComponentProps<"span">) => {
   return (
     <span
       {...props}

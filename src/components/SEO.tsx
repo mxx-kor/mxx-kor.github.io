@@ -4,14 +4,14 @@ import { NextSeo } from "next-seo";
 
 interface PageSEOProps {
   title?: string;
-  description: string;
+  description?: string;
   path: string;
   image?: string;
 }
 
 export const PageSEO = ({
   title = siteConfig.title,
-  description,
+  description = siteConfig.description,
   path,
   image = defaultImage,
 }: PageSEOProps) => {

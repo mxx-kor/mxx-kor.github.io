@@ -21,7 +21,7 @@ export type PostInfo = {
       rich_text: { plain_text: string }[];
     };
   };
-  cover: ExternalType | FileType;
+  cover: ExternalType | FileType | null;
 };
 
 type TagType = {
