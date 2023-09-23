@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://mxx-kor.github.io</loc><lastmod>2023-09-23T14:53:37.094Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
-<url><loc>https://mxx-kor.github.io/archives</loc><lastmod>2023-09-23T14:53:37.094Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
-<url><loc>https://mxx-kor.github.io/blog</loc><lastmod>2023-09-23T14:53:37.094Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
-<url><loc>https://mxx-kor.github.io/blog/rest-api</loc><lastmod>2023-09-23T14:53:37.094Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
-<url><loc>https://mxx-kor.github.io/blog/garbage-collection</loc><lastmod>2023-09-23T14:53:37.094Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
-<url><loc>https://mxx-kor.github.io/blog/wumo-team-project-retrospect</loc><lastmod>2023-09-23T14:53:37.094Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
-<url><loc>https://mxx-kor.github.io/blog/web-perfomance-metrics</loc><lastmod>2023-09-23T14:53:37.094Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
-<url><loc>https://mxx-kor.github.io/blog/react-key-props</loc><lastmod>2023-09-23T14:53:37.094Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
-<url><loc>https://mxx-kor.github.io/blog/browser-rendering-process</loc><lastmod>2023-09-23T14:53:37.094Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
+<url><loc>https://mxx-kor.github.io</loc><lastmod>2023-09-23T15:58:25.057Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
+<url><loc>https://mxx-kor.github.io/archives</loc><lastmod>2023-09-23T15:58:25.057Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
+<url><loc>https://mxx-kor.github.io/blog</loc><lastmod>2023-09-23T15:58:25.057Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
+<url><loc>https://mxx-kor.github.io/blog/notion-clone-project-retrospect</loc><lastmod>2023-09-23T15:58:25.057Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
+<url><loc>https://mxx-kor.github.io/blog/dig-dig-deep-project-retrospect</loc><lastmod>2023-09-23T15:58:25.057Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
+<url><loc>https://mxx-kor.github.io/blog/rest-api</loc><lastmod>2023-09-23T15:58:25.057Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
+<url><loc>https://mxx-kor.github.io/blog/garbage-collection</loc><lastmod>2023-09-23T15:58:25.057Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
+<url><loc>https://mxx-kor.github.io/blog/wumo-team-project-retrospect</loc><lastmod>2023-09-23T15:58:25.057Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
+<url><loc>https://mxx-kor.github.io/blog/web-perfomance-metrics</loc><lastmod>2023-09-23T15:58:25.057Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
+<url><loc>https://mxx-kor.github.io/blog/react-key-props</loc><lastmod>2023-09-23T15:58:25.057Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
+<url><loc>https://mxx-kor.github.io/blog/browser-rendering-process</loc><lastmod>2023-09-23T15:58:25.057Z</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>
 </urlset>
