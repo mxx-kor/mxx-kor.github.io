@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://mxx-kor.github.io
+
+# Sitemaps
+Sitemap: https://mxx-kor.github.io/sitemap.xml
