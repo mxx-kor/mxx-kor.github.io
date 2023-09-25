@@ -45,7 +45,7 @@ const Archives = ({
       />
       <Title className="my-6 text-4xl">Archives</Title>
       <SubTitle className="mb-4">
-        Tags <span className="text-lg">{`- (${allTags.length})`}</span>
+        Tags<span className="ml-1 text-lg">{`- (${allTags.length})`}</span>
       </SubTitle>
       <div className="flex flex-wrap gap-2">
         {allTags.map(tag => (
@@ -61,7 +61,10 @@ const Archives = ({
           .reverse()
           .map(year => (
             <section key={year}>
-              <h3 className="mb-2 text-lg font-bold">{year}</h3>
+              <h3 className="mb-2 flex items-center text-lg font-bold">
+                {year}
+                <span className="ml-1 text-sm">{`- (${sortedPosts[year].length})`}</span>
+              </h3>
               <ul>
                 {sortedPosts[year].map(post => (
                   <li className="flex items-center gap-2" key={post.id}>
