@@ -7,9 +7,10 @@ const notionClient = new Client({
 
 const notionReact = new NotionAPI();
 
-export const getDataBase = async () => {
+export const getDataBase = async (options = {}) => {
   const response = await notionClient.databases.query({
     database_id: `${process.env.NOTION_DATABASE_ID}`,
+    ...options,
   });
   return response;
 };

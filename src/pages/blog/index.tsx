@@ -6,22 +6,13 @@ import TextInput from "@/components/base/TextInput";
 import Title from "@/components/base/Title";
 import useSearch from "@/hooks/useSearch";
 import { fadeInUp, staggerChild } from "@/libs/animations";
-import { dateFormat } from "@/libs/format";
+import { typeGuardedPosts } from "@/libs/notion";
 import { PostInfo } from "@/types/notion";
-import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import { m } from "framer-motion";
 
 export async function getStaticProps() {
   const db = await getDataBase();
-  const posts = db.results.map(post => {
-    const data = post as PageObjectResponse;
-    const result = {
-      id: data.id,
-      properties: data.properties,
-      created_time: dateFormat(data.created_time),
-    };
-    return result;
-  });
+  const posts = typeGuardedPosts(db);
 
   return { props: { posts } };
 }

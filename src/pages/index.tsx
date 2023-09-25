@@ -5,26 +5,23 @@ import LinkText from "@/components/base/LinkText";
 import PlainText from "@/components/base/PlainText";
 import SubTitle from "@/components/base/SubTitle";
 import Title from "@/components/base/Title";
-import { dateFormat } from "@/libs/format";
 import { PostInfo } from "@/types/notion";
-import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import { RiMoreFill } from "@react-icons/all-files/ri/RiMoreFill";
 import { Fragment } from "react";
 import { m } from "framer-motion";
 import { fadeIn, staggerChild } from "@/libs/animations";
+import { typeGuardedPosts } from "@/libs/notion";
 
 export async function getStaticProps() {
-  const db = await getDataBase();
-  const posts = db.results.map(post => {
-    const data = post as PageObjectResponse;
-    const result = {
-      id: data.id,
-      properties: data.properties,
-      created_time: dateFormat(data.created_time),
-      cover: data.cover,
-    };
-    return result;
+  const db = await getDataBase({
+    filter: {
+      property: "Main",
+      checkbox: {
+        equals: true,
+      },
+    },
   });
+  const posts = typeGuardedPosts(db);
 
   return { props: { posts } };
 }
