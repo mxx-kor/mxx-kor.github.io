@@ -1,10 +1,88 @@
+import { getDataBase } from "@/apis/notion";
+import { PageSEO } from "@/components/SEO";
+import Divider from "@/components/base/Divider";
+import LinkText from "@/components/base/LinkText";
+import SubTitle from "@/components/base/SubTitle";
+import Tag from "@/components/base/Tag";
 import Title from "@/components/base/Title";
+import { dateFormat } from "@/libs/format";
+import { classifyPosts, typeGuardedPosts } from "@/libs/notion";
+import { PostInfo } from "@/types/notion";
+import { Fragment } from "react";
 
-const Archives = () => {
+export async function getStaticProps() {
+  const db = await getDataBase();
+  const posts = typeGuardedPosts(db);
+  const allTags = Array.from(
+    posts.reduce((acc, post) => {
+      if ("Tags" in post.properties) {
+        if ("multi_select" in post.properties.Tags) {
+          post.properties.Tags.multi_select.forEach(tag => acc.add(tag.name));
+        }
+      }
+      return acc;
+    }, new Set<string>([])),
+  );
+
+  return { props: { posts, allTags } };
+}
+
+const Archives = ({
+  posts,
+  allTags,
+}: {
+  posts: PostInfo[];
+  allTags: string[];
+}) => {
+  const sortedPosts = classifyPosts(posts);
+
   return (
-    <main>
-      <Title>Archives</Title>
-    </main>
+    <>
+      <PageSEO
+        title="archives | minjae"
+        description="태그와 포스트를 한곳에서 확인할 수 있는 기록 저장소입니다."
+        path="archives"
+      />
+      <Title className="my-6 text-4xl">Archives</Title>
+      <SubTitle className="mb-4">
+        Tags <span className="text-lg">{`- (${allTags.length})`}</span>
+      </SubTitle>
+      <div className="flex flex-wrap gap-2">
+        {allTags.map(tag => (
+          <Fragment key={tag}>
+            <Tag className="text-md" name={tag} />
+          </Fragment>
+        ))}
+      </div>
+      <Divider className="my-6" />
+      <SubTitle className="mb-4">Posts</SubTitle>
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {Object.keys(sortedPosts)
+          .reverse()
+          .map(year => (
+            <section key={year}>
+              <h3 className="mb-2 text-lg font-bold">{year}</h3>
+              <ul>
+                {sortedPosts[year].map(post => (
+                  <li className="flex items-center gap-2" key={post.id}>
+                    <span className="w-14 text-lg font-light tracking-tight">
+                      {dateFormat(post.created_time, "en-US", {
+                        month: "short",
+                        day: "2-digit",
+                      })}
+                    </span>
+                    <LinkText
+                      href={`/blog/${post.properties.Slug.title[0].plain_text}`}
+                    >
+                      {post.properties.Title.rich_text[0].plain_text}
+                    </LinkText>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+      </div>
+    </>
   );
 };
 
