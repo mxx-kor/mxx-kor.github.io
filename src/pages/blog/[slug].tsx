@@ -4,7 +4,7 @@ import BaseLayout from "@/components/Layouts/BaseLayout";
 import PostLayout from "@/components/Layouts/PostLayout";
 import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
 import { GetStaticPropsContext } from "next";
-import { ReactElement, useEffect, useState } from "react";
+import { Fragment, ReactElement, useEffect, useState } from "react";
 import { NotionRenderer } from "react-notion-x";
 import dynamic from "next/dynamic";
 import { ExtendedRecordMap } from "notion-types";
@@ -14,6 +14,7 @@ import Image from "next/image";
 import { BlogSEO } from "@/components/SEO";
 import { PostInfo } from "@/types/notion";
 import Title from "@/components/base/Title";
+import Tag from "@/components/base/Tag";
 
 // core styles shared by all of react-notion-x (required)
 import "react-notion-x/src/styles.css";
@@ -99,6 +100,7 @@ const Post = ({ post, recordMap }: PostProps) => {
   const { resolvedTheme } = useDarkMode();
   const [theme, setTheme] = useState(true);
   const title = post.properties.Title.rich_text[0].plain_text;
+  const tags = post.properties.Tags.multi_select;
 
   useEffect(() => {
     const isDarkTheme = resolvedTheme === "dark" ? true : false;
@@ -109,7 +111,14 @@ const Post = ({ post, recordMap }: PostProps) => {
     <>
       <BlogSEO {...post} />
       <article>
-        <Title className="text-center text-3xl font-bold">{title}</Title>
+        <Title className="mb-6 text-center text-3xl font-bold">{title}</Title>
+        <div className="mb-4 flex justify-center gap-2">
+          {tags.map(tag => (
+            <Fragment key={tag.id}>
+              <Tag name={tag.name} />
+            </Fragment>
+          ))}
+        </div>
         <NotionRenderer
           recordMap={recordMap}
           darkMode={theme}

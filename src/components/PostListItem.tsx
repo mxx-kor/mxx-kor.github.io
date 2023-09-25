@@ -29,7 +29,7 @@ const PostListItem = ({ ...post }: PostInfo) => {
         <div className="flex gap-2">
           {tags.map(tag => (
             <Fragment key={tag.id}>
-              <Tag {...tag} />
+              <Tag name={tag.name} />
             </Fragment>
           ))}
         </div>

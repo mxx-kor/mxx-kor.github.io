@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Badge from "./Badge";
-import { MultiSelectType } from "@/types/notion";
+import { cn } from "@/libs/core";
 
-const Tag = ({ name }: MultiSelectType) => {
+const Tag = ({ className, name }: { className?: string; name: string }) => {
   const tagValue = name.replace("\b", "");
   return (
     <Link href={`/archives/tags/${tagValue}`}>
-      <Badge>{tagValue}</Badge>
+      <Badge className={cn(className)}>{tagValue}</Badge>
     </Link>
   );
 };

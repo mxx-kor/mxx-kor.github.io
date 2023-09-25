@@ -1,7 +1,7 @@
 import { cn } from "@/libs/core";
 
 interface DividerProps extends React.ComponentProps<"hr"> {
-  type: "horizontal" | "vertical";
+  type?: "horizontal" | "vertical";
 }
 
 const Divider = ({
@@ -13,7 +13,16 @@ const Divider = ({
     type === "vertical"
       ? "relative inline-block align-middle border-l-2 w-px h-5 mx-2"
       : "border-1 w-full";
-  return <hr {...props} className={cn(dividerStyle, className)} />;
+  return (
+    <hr
+      {...props}
+      className={cn(
+        "border-neutral-300 dark:border-neutral-500",
+        dividerStyle,
+        className,
+      )}
+    />
+  );
 };
 
 export default Divider;

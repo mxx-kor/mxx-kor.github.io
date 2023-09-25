@@ -18,7 +18,7 @@ const BaseLayout = ({ children }: { children: ReactNode }) => {
         <DefaultSeo {...seoConfig} />
         <Header />
         {children}
-        <Divider type="horizontal" className="my-8" />
+        <Divider className="my-8" />
         <footer className="mb-10 flex flex-col items-end text-sm">
           <Contacts />
           <p>
