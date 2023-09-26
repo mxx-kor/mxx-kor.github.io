@@ -27,10 +27,6 @@ export async function getStaticProps() {
 }
 
 const Home = ({ posts }: { posts: PostInfo[] }) => {
-  const selectedPosts = posts
-    .filter(post => post.properties.Main.checkbox === true)
-    .slice(0, 3);
-
   return (
     <main>
       <m.section initial="initial" animate="animate">
@@ -65,7 +61,7 @@ const Home = ({ posts }: { posts: PostInfo[] }) => {
           variants={staggerChild}
           className="mb-4 grid gap-6 md:grid-cols-3"
         >
-          {selectedPosts.map((selectedPost, idx) => (
+          {posts.map((selectedPost, idx) => (
             <Fragment key={selectedPost.id}>
               <PostItemCard {...selectedPost} idx={idx} />
             </Fragment>

@@ -5,9 +5,11 @@ import PlainText from "./base/PlainText";
 import Link from "next/link";
 import Tag from "./base/Tag";
 import { Fragment } from "react";
+import { dateFormat } from "@/libs/format";
 
 const PostListItem = ({ ...post }: PostInfo) => {
   const { properties, created_time } = post;
+  const createdTime = dateFormat(created_time).replaceAll(" ", "").slice(0, -1);
   const slug = properties.Slug.title[0].plain_text;
   const title = properties.Title.rich_text[0].plain_text;
   const summary =
@@ -36,7 +38,7 @@ const PostListItem = ({ ...post }: PostInfo) => {
         <IconText
           className="text-tertiary group-hover:text-secondary"
           Icon={FiCalendar}
-          text={created_time}
+          text={createdTime}
         />
       </div>
     </>

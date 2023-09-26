@@ -2,7 +2,6 @@ import {
   PageObjectResponse,
   QueryDatabaseResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-import { dateFormat } from "./format";
 import { PostInfo } from "@/types/notion";
 
 export const typeGuardedPosts = (db: QueryDatabaseResponse) => {
@@ -11,9 +10,7 @@ export const typeGuardedPosts = (db: QueryDatabaseResponse) => {
     const result = {
       id: data.id,
       properties: data.properties,
-      created_time: dateFormat(data.created_time)
-        .replaceAll(" ", "")
-        .slice(0, -1),
+      created_time: data.created_time,
     };
     return result;
   });
