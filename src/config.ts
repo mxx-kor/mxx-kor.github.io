@@ -20,6 +20,10 @@ export const siteConfig = {
   },
   menu: [
     {
+      label: "Home",
+      path: "/",
+    },
+    {
       label: "Blog",
       path: "/blog",
     },

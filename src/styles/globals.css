@@ -12,7 +12,7 @@
   }
 
   .text-tertiary {
-    @apply text-neutral-600 dark:text-neutral-400;
+    @apply text-neutral-500 dark:text-neutral-400;
   }
 
   .text-mute {
