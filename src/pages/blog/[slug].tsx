@@ -2,7 +2,10 @@ import { getDataBase, getNotionPage, getPost } from "@/apis/notion";
 import Comments from "@/components/Comments";
 import BaseLayout from "@/components/Layouts/BaseLayout";
 import PostLayout from "@/components/Layouts/PostLayout";
-import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
+import {
+  PageObjectResponse,
+  RichTextItemResponse,
+} from "@notionhq/client/build/src/api-endpoints";
 import { GetStaticPropsContext } from "next";
 import { Fragment, ReactElement, useEffect, useState } from "react";
 import { NotionRenderer } from "react-notion-x";
@@ -75,17 +78,15 @@ export const getStaticPaths = async () => {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const slug = context.params && context.params.slug;
-  const { results } = await getDataBase();
-  const { id } = results.filter(post => {
-    if ("properties" in post) {
-      if ("title" in post.properties.Slug) {
-        const slugFirstTitle = post.properties.Slug
-          .title as RichTextItemResponse[];
-        return slugFirstTitle[0].plain_text === slug;
-      }
-    }
-  })[0];
-
+  const db = await getDataBase({
+    filter: {
+      property: "Slug",
+      rich_text: {
+        equals: slug,
+      },
+    },
+  });
+  const { id } = db.results[0] as PageObjectResponse;
   const [post, recordMap] = await Promise.all([getPost(id), getNotionPage(id)]);
 
   return {
