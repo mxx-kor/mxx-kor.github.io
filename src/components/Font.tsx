@@ -1,4 +1,4 @@
-import { fontSans, fontSpoqa } from "@/libs/font";
+import { fontSans, fontSpoqa } from "@/constants/font";
 
 const Font = () => {
   return (

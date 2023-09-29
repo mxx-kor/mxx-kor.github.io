@@ -6,7 +6,7 @@ import IconText from "./base/IconText";
 import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
 import { m } from "framer-motion";
 import { fadeInUp } from "@/libs/animations";
-import { unsplashImages } from "@/libs/images";
+import { unsplashImages } from "@/constants/images";
 import { dateFormat } from "@/libs/format";
 
 interface postItemCardProps {
