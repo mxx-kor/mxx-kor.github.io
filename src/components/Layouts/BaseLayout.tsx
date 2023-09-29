@@ -3,10 +3,10 @@ import Header from "@/components/Header";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 import { DefaultSeo } from "next-seo";
-import { seoConfig, siteConfig } from "@/config";
-import Link from "next/link";
+import { seoConfig } from "@/config";
 import Contacts from "../Contacts";
 import Divider from "../base/Divider";
+import CopyRight from "../CopyRight";
 
 const BaseLayout = ({ children }: { children: ReactNode }) => {
   return (
@@ -21,14 +21,7 @@ const BaseLayout = ({ children }: { children: ReactNode }) => {
         <Divider className="my-8" />
         <footer className="mb-10 flex flex-col items-end text-sm">
           <Contacts />
-          <p>
-            <span>© </span>
-            <Link href="/about">{siteConfig.author.name}</Link>
-            <span> Powered by </span>
-            <Link href="https://nextjs.org/">Next.js</Link>
-            <span>, </span>
-            <Link href="https://pages.github.com/">Github Pages</Link>
-          </p>
+          <CopyRight />
         </footer>
       </div>
     </ThemeProvider>

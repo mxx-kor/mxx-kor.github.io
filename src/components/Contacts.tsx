@@ -1,5 +1,4 @@
 import { siteConfig } from "@/config";
-import Link from "next/link";
 import ContactIcons from "./ContactIcons";
 
 const Contacts = () => {
@@ -16,9 +15,15 @@ const Contacts = () => {
         if (sns === "github") contact = `https://github.com/${contact}`;
 
         return (
-          <Link key={sns} href={contact}>
+          <a
+            target="_blank"
+            key={sns}
+            href={contact}
+            rel="noreferrer"
+            className="text-tertiary hover:text-primary"
+          >
             <ContactIcons contact={assertedSns} />
-          </Link>
+          </a>
         );
       })}
     </div>
