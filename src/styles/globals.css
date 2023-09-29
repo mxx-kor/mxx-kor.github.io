@@ -15,6 +15,10 @@
     @apply text-neutral-500 dark:text-neutral-400;
   }
 
+  .text-quaternary {
+    @apply text-neutral-400 dark:text-neutral-500;
+  }
+
   .text-mute {
     @apply text-neutral-500 dark:text-neutral-400;
   }
