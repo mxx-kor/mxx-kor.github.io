@@ -5,15 +5,15 @@ import React, { Fragment } from "react";
 
 const poweredBy = {
   "Next.js": "https://nextjs.org/",
-  "Notion API": "https://developers.notion.com/",
   "Github Pages": "https://pages.github.com/",
+  "Notion API": "https://developers.notion.com/",
 };
 
 const typedPoweredBy = getKeys(poweredBy);
 
 const CopyRight = () => {
   return (
-    <p className="text-tertiary">
+    <p className="text-tertiary mx-auto sm:mx-0">
       <span>© </span>
       <Link href="/about" className="hover:text-primary hover:underline">
         {siteConfig.author.name}

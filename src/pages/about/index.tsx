@@ -84,14 +84,29 @@ const About = () => {
           <SubTitle>Dev Experience</SubTitle>
           <Divider className="mb-4" />
           <ul>
-            {getKeys(devExperience).map((content, idx) => (
-              <li key={idx} className="mb-3 grid grid-cols-1 sm:grid-cols-3">
-                <div className="w-full sm:w-44">
+            {getKeys(devExperience).map(content => (
+              <li
+                key={content}
+                className="mb-3 grid grid-cols-1 sm:grid-cols-3"
+              >
+                <div className="mb-1 flex w-full flex-col sm:w-44">
                   <h3 className="text-primary text-md font-medium tracking-tight">
                     {content}
                   </h3>
                   <span className="text-quaternary text-sm italic">
                     {devExperience[content].period}
+                  </span>
+                  <span className="text-quaternary text-sm italic">
+                    {content.includes("프로그래머스") && (
+                      <a
+                        target="_blank"
+                        href="https://mxxcode.tistory.com/category/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4%20%EB%8D%B0%EB%B8%8C%EC%BD%94%EC%8A%A4"
+                        rel="noreferrer"
+                        className="hover:text-secondary underline underline-offset-2"
+                      >
+                        관련 블로그 글
+                      </a>
+                    )}
                   </span>
                 </div>
                 <ul className="text-tertiary col-span-2 list-disc break-keep pl-3.5">
