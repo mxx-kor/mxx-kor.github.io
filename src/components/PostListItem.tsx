@@ -4,10 +4,10 @@ import { PostInfo } from "@/types/notion";
 import PlainText from "./base/PlainText";
 import Link from "next/link";
 import Tag from "./base/Tag";
-import { Fragment } from "react";
+import { Fragment, memo } from "react";
 import { dateFormat } from "@/libs/format";
 
-const PostListItem = ({ ...post }: PostInfo) => {
+const PostListItem = memo(function PostListItem({ ...post }: PostInfo) {
   const { properties, created_time } = post;
   const createdTime = dateFormat(created_time).replaceAll(" ", "").slice(0, -1);
   const slug = properties.Slug.title[0].plain_text;
@@ -43,6 +43,6 @@ const PostListItem = ({ ...post }: PostInfo) => {
       </div>
     </>
   );
-};
+});
 
 export default PostListItem;
