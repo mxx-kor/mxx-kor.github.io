@@ -36,20 +36,9 @@
 
 - Notion을 CMS로 활용하였고 이를 SSG로 정적 사이트로 제작하였습니다.
 - Next.js가 제공하는 Link, Font 최적화를 활용하였습니다.
-
-### SEO
-
-- 각 페이지에 맞는 메타 태그와 robots.txt, sitemap.xml을 생성하였습니다.
-- next-seo, next-sitemap 라이브러리를 활용하였습니다.
-
-### 이미지 최적화
-
-- static export를 사용하여 Next.js의 이미지 최적화를 활용할 수 없었습니다.
-- next-export-optimize-images 라이브러리를 사용하여 최적화를 진행했습니다.
-
-### CI/CD
-
-- Github actions를 활용해 빌드, 배포를 자동화하였습니다.
+- 각 페이지에 맞는 메타 태그와 robots.txt, sitemap.xml를 통해 SEO를 적용하였습니다.
+- 이미지 최적화를 통해 사진 파일의 크기와 로드 시간을 단축하였습니다.
+- Github actions를 활용해 빌드, 배포를 자동화하였습니다
 
 ### 폴더 구조
 
