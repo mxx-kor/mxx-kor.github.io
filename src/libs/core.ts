@@ -7,3 +7,5 @@ export const cn = (...inputs: ClassValue[]) => {
 
 export const getKeys = <T extends object>(obj: T): Array<keyof T> =>
   Object.keys(obj) as Array<keyof T>;
+
+export const isDev = process.env.NODE_ENV === "development";

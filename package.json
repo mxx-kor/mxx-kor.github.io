@@ -27,6 +27,7 @@
     "react-notion-x": "^6.16.0"
   },
   "devDependencies": {
+    "@types/gtag.js": "^0.0.14",
     "@types/lodash.debounce": "^4.0.7",
     "@types/node": "20.3.3",
     "@types/react": "18.2.14",
