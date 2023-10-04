@@ -4,10 +4,11 @@ import Head from "next/head";
 import Contacts from "../Contacts";
 import Divider from "../base/Divider";
 import CopyRight from "../CopyRight";
+import { ThemeProvider } from "next-themes";
 
 const BaseLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <>
+    <ThemeProvider attribute="class">
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
@@ -20,7 +21,7 @@ const BaseLayout = ({ children }: { children: ReactNode }) => {
           <CopyRight />
         </footer>
       </div>
-    </>
+    </ThemeProvider>
   );
 };
 

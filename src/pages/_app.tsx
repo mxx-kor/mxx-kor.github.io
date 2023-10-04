@@ -3,7 +3,6 @@ import "@/styles/globals.css";
 import BaseLayout from "@/components/Layouts/BaseLayout";
 import { NextPage } from "next";
 import { ReactElement, ReactNode } from "react";
-import { ThemeProvider } from "next-themes";
 import Font from "@/components/Font";
 import { DefaultSeo } from "next-seo";
 import { seoConfig } from "@/config";
@@ -27,13 +26,11 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
     Component.getLayout || (page => <BaseLayout>{page}</BaseLayout>);
   return getLayout(
     <>
-      <ThemeProvider attribute="class">
-        <DefaultSeo {...seoConfig} />
-        <Font />
-        <LazyMotion features={domAnimation}>
-          <Component {...pageProps} />
-        </LazyMotion>
-      </ThemeProvider>
+      <DefaultSeo {...seoConfig} />
+      <Font />
+      <LazyMotion features={domAnimation}>
+        <Component {...pageProps} />
+      </LazyMotion>
       {/* <!-- Google tag (gtag.js) --> */}
       {!isDev && (
         <>
