@@ -18,6 +18,8 @@ import { BlogSEO } from "@/components/SEO";
 import { PostInfo } from "@/types/notion";
 import Title from "@/components/base/Title";
 import Tag from "@/components/base/Tag";
+import { TableOfContentsEntry, getTableOfContents } from "@/libs/notion";
+import TocTop from "@/components/TocTop";
 
 // core styles shared by all of react-notion-x (required)
 import "react-notion-x/src/styles.css";
@@ -53,6 +55,7 @@ const Modal = dynamic(
 interface PostProps {
   post: PostInfo;
   recordMap: ExtendedRecordMap;
+  tableOfContents: Array<TableOfContentsEntry>;
 }
 
 export const getStaticPaths = async () => {
@@ -88,20 +91,23 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   });
   const { id } = db.results[0] as PageObjectResponse;
   const [post, recordMap] = await Promise.all([getPost(id), getNotionPage(id)]);
+  const tableOfContents = getTableOfContents(recordMap);
 
   return {
     props: {
       post,
       recordMap,
+      tableOfContents,
     },
   };
 }
 
-const Post = ({ post, recordMap }: PostProps) => {
+const Post = ({ post, recordMap, tableOfContents }: PostProps) => {
   const { resolvedTheme } = useDarkMode();
   const [theme, setTheme] = useState(true);
   const title = post.properties.Title.rich_text[0].plain_text;
   const tags = post.properties.Tags.multi_select;
+  const slug = post.properties.Slug.title[0].plain_text;
 
   useEffect(() => {
     const isDarkTheme = resolvedTheme === "dark" ? true : false;
@@ -120,6 +126,9 @@ const Post = ({ post, recordMap }: PostProps) => {
             </Fragment>
           ))}
         </div>
+        <section className="bg-tag mx-4 rounded-2xl ring-1 ring-inset ring-gray-500/10 transition-all">
+          <TocTop slug={slug} tableOfContents={tableOfContents} />
+        </section>
         <NotionRenderer
           recordMap={recordMap}
           darkMode={theme}
