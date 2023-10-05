@@ -29,6 +29,10 @@ import "prismjs/themes/prism-tomorrow.css";
 
 // used for rendering equations (optional)
 import "katex/dist/katex.min.css";
+import Divider from "@/components/base/Divider";
+import { dateFormat } from "@/libs/format";
+import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
+import IconText from "@/components/base/IconText";
 
 const Code = dynamic(() =>
   import("react-notion-x/build/third-party/code").then(m => m.Code),
@@ -105,9 +109,11 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 const Post = ({ post, recordMap, tableOfContents }: PostProps) => {
   const { resolvedTheme } = useDarkMode();
   const [theme, setTheme] = useState(true);
-  const title = post.properties.Title.rich_text[0].plain_text;
-  const tags = post.properties.Tags.multi_select;
-  const slug = post.properties.Slug.title[0].plain_text;
+  const { properties, created_time } = post;
+  const title = properties.Title.rich_text[0].plain_text;
+  const tags = properties.Tags.multi_select;
+  const slug = properties.Slug.title[0].plain_text;
+  const createdTime = dateFormat(created_time).replaceAll(" ", "").slice(0, -1);
 
   useEffect(() => {
     const isDarkTheme = resolvedTheme === "dark" ? true : false;
@@ -118,15 +124,25 @@ const Post = ({ post, recordMap, tableOfContents }: PostProps) => {
     <>
       <BlogSEO {...post} />
       <article>
-        <Title className="mb-6 text-center text-3xl font-bold">{title}</Title>
-        <div className="mb-4 flex justify-center gap-2">
-          {tags.map(tag => (
-            <Fragment key={tag.id}>
-              <Tag name={tag.name} />
-            </Fragment>
-          ))}
-        </div>
-        <section className="bg-tag mx-4 rounded-2xl ring-1 ring-inset ring-gray-500/10 transition-all">
+        <section>
+          <Title className="mb-2 break-keep text-center text-3xl font-bold">
+            {title}
+          </Title>
+          <IconText
+            className="text-tertiary mb-2 justify-center text-sm"
+            Icon={FiCalendar}
+            text={createdTime}
+          />
+          <div className="mb-4 flex justify-center gap-2">
+            {tags.map(tag => (
+              <Fragment key={tag.id}>
+                <Tag name={tag.name} />
+              </Fragment>
+            ))}
+          </div>
+        </section>
+        <section className="mx-4 transition-all">
+          <Divider className="border-1 mb-4 dark:border-neutral-300" />
           <TocTop slug={slug} tableOfContents={tableOfContents} />
         </section>
         <NotionRenderer

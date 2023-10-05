@@ -1,5 +1,4 @@
 import { TableOfContentsEntry } from "@/libs/notion";
-import Divider from "./base/Divider";
 import SubTitle from "./base/SubTitle";
 import LinkText from "./base/LinkText";
 
@@ -18,25 +17,21 @@ const TocTop = ({ slug, tableOfContents }: TocProps) => {
   };
 
   const getStyle = (indentLevel: number) => {
-    if (indentLevel === 0) return "text-lg";
-    if (indentLevel === 1) return "ml-8 text-lg";
-    if (indentLevel === 2) return "ml-16";
+    if (indentLevel === 0) return "text-base";
+    if (indentLevel === 1) return "ml-8 text-sm";
+    if (indentLevel === 2) return "ml-16 text-sm";
   };
 
   return (
     <>
-      <SubTitle className="px-4 py-2 text-xl font-light">
+      <SubTitle className="mb-2 px-2 text-xl font-bold">
         Table of contents
       </SubTitle>
-      <Divider />
-      <ul className="py-2">
+      <ul className="px-2">
         {tableOfContents.map(
           toc =>
             toc.text !== "" && (
-              <li
-                className="mb-1 px-4 font-light tracking-tighter"
-                key={toc.id}
-              >
+              <li className="mb-1 tracking-tighter" key={toc.id}>
                 <LinkText
                   href={`/blog/${slug}#${getTocLink(toc.id)}`}
                   className={getStyle(toc.indentLevel)}

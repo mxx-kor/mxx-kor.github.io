@@ -4,7 +4,7 @@ import {
 } from "@notionhq/client/build/src/api-endpoints";
 import { BlockType, PostInfo } from "@/types/notion";
 import { ExtendedRecordMap } from "notion-types";
-import { getPageTableOfContents, getTextContent } from "notion-utils";
+import { getTextContent } from "notion-utils";
 
 export const typeGuardedPosts = (db: QueryDatabaseResponse) => {
   const results = db.results.map(post => {
@@ -41,8 +41,6 @@ export const classifyPosts = (posts: PostInfo[]) => {
       return ac;
     }, {});
 };
-
-getPageTableOfContents;
 
 export interface TableOfContentsEntry {
   id: string;
@@ -92,9 +90,7 @@ export const getTableOfContents = (
     },
   ];
 
-  // Adjust indent levels to always change smoothly.
-  // This is a little tricky, but the key is that when increasing indent levels,
-  // they should never jump more than one at a time.
+  // 최소 indentLevel에 맞추어 표시를 위한 loop
   for (const tocItem of toc) {
     const { indentLevel } = tocItem;
     const actual = indentLevel;
@@ -115,8 +111,6 @@ export const getTableOfContents = (
       } else {
         indentLevelStack.pop();
       }
-
-      // eslint-disable-next-line no-constant-condition
     } while (true);
   }
 
