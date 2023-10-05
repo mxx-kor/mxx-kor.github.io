@@ -1,13 +1,8 @@
-import { TableOfContentsEntry } from "@/libs/notion";
-import SubTitle from "./base/SubTitle";
+import { TocProps } from "./TocTop";
 import LinkText from "./base/LinkText";
+import SubTitle from "./base/SubTitle";
 
-export interface TocProps {
-  slug: string;
-  tableOfContents: Array<TableOfContentsEntry>;
-}
-
-const TocTop = ({ slug, tableOfContents }: TocProps) => {
+const TocBanner = ({ slug, tableOfContents }: TocProps) => {
   if (tableOfContents.length === 0) {
     return <></>;
   }
@@ -18,20 +13,18 @@ const TocTop = ({ slug, tableOfContents }: TocProps) => {
 
   const getStyle = (indentLevel: number) => {
     if (indentLevel === 0) return "text-base";
-    if (indentLevel === 1) return "ml-8 text-sm";
-    if (indentLevel === 2) return "ml-16 text-sm";
+    if (indentLevel === 1) return "ml-4 text-sm";
+    if (indentLevel === 2) return "ml-8 text-sm";
   };
 
   return (
     <>
-      <SubTitle className="mb-2 px-2 text-xl font-bold">
-        Table of contents
-      </SubTitle>
-      <ul className="px-2">
+      <SubTitle className="mb-4 text-lg font-bold">목차</SubTitle>
+      <ul>
         {tableOfContents.map(
           toc =>
             toc.text !== "" && (
-              <li className="mb-1 tracking-tighter" key={toc.id}>
+              <li className="mb-1 font-light tracking-tighter" key={toc.id}>
                 <LinkText
                   href={`/blog/${slug}#${getTocLink(toc.id)}`}
                   className={getStyle(toc.indentLevel)}
@@ -46,4 +39,4 @@ const TocTop = ({ slug, tableOfContents }: TocProps) => {
   );
 };
 
-export default TocTop;
+export default TocBanner;

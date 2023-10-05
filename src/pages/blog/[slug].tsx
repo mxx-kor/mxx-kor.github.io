@@ -33,6 +33,7 @@ import Divider from "@/components/base/Divider";
 import { dateFormat } from "@/libs/format";
 import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
 import IconText from "@/components/base/IconText";
+import TocBanner from "@/components/TocBanner";
 
 const Code = dynamic(() =>
   import("react-notion-x/build/third-party/code").then(m => m.Code),
@@ -124,6 +125,11 @@ const Post = ({ post, recordMap, tableOfContents }: PostProps) => {
     <>
       <BlogSEO {...post} />
       <article>
+        <aside className="sticky top-12 hidden xl:block">
+          <div className="absolute left-[740px] w-56 rounded-2xl p-4">
+            <TocBanner slug={slug} tableOfContents={tableOfContents} />
+          </div>
+        </aside>
         <section>
           <Title className="mb-2 break-keep text-center text-3xl font-bold">
             {title}
@@ -141,7 +147,7 @@ const Post = ({ post, recordMap, tableOfContents }: PostProps) => {
             ))}
           </div>
         </section>
-        <section className="mx-4 transition-all">
+        <section className="mx-4 transition-all xl:hidden">
           <Divider className="border-1 mb-4 dark:border-neutral-300" />
           <TocTop slug={slug} tableOfContents={tableOfContents} />
         </section>
@@ -158,8 +164,8 @@ const Post = ({ post, recordMap, tableOfContents }: PostProps) => {
             nextLink: Link,
           }}
         />
+        <Comments />
       </article>
-      <Comments />
     </>
   );
 };
