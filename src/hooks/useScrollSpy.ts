@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 const observerOption = {
   threshold: 0.4,
-  rootMargin: "-70px 0px -90% 0px",
+  rootMargin: "-5% 0px -90% 0px",
 };
 
 const getIntersectionObserver = (
