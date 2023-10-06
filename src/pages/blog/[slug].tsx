@@ -20,6 +20,10 @@ import Title from "@/components/base/Title";
 import Tag from "@/components/base/Tag";
 import { TableOfContentsEntry, getTableOfContents } from "@/libs/notion";
 import TocTop from "@/components/TocTop";
+import { dateFormat } from "@/libs/format";
+import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
+import IconText from "@/components/base/IconText";
+import TocBanner from "@/components/TocBanner";
 
 // core styles shared by all of react-notion-x (required)
 import "react-notion-x/src/styles.css";
@@ -29,11 +33,6 @@ import "prismjs/themes/prism-tomorrow.css";
 
 // used for rendering equations (optional)
 import "katex/dist/katex.min.css";
-import Divider from "@/components/base/Divider";
-import { dateFormat } from "@/libs/format";
-import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
-import IconText from "@/components/base/IconText";
-import TocBanner from "@/components/TocBanner";
 
 const Code = dynamic(() =>
   import("react-notion-x/build/third-party/code").then(m => m.Code),
@@ -126,7 +125,7 @@ const Post = ({ post, recordMap, tableOfContents }: PostProps) => {
       <BlogSEO {...post} />
       <article>
         <aside className="sticky top-12 hidden xl:block">
-          <div className="absolute left-[740px] w-56 rounded-2xl p-4">
+          <div className="absolute left-full w-64 rounded-2xl p-4">
             <TocBanner slug={slug} tableOfContents={tableOfContents} />
           </div>
         </aside>
@@ -148,7 +147,6 @@ const Post = ({ post, recordMap, tableOfContents }: PostProps) => {
           </div>
         </section>
         <section className="mx-4 transition-all xl:hidden">
-          <Divider className="border-1 mb-4 dark:border-neutral-300" />
           <TocTop slug={slug} tableOfContents={tableOfContents} />
         </section>
         <NotionRenderer

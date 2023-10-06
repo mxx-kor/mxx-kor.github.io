@@ -1,12 +1,11 @@
 import { TocProps } from "./TocTop";
 import LinkText from "./base/LinkText";
 import SubTitle from "./base/SubTitle";
+import { cn } from "@/libs/core";
+import useScrollSpy from "@/hooks/useScrollSpy";
 
 const TocBanner = ({ slug, tableOfContents }: TocProps) => {
-  if (tableOfContents.length === 0) {
-    return <></>;
-  }
-
+  const activeId = useScrollSpy();
   const getTocLink = (id: string) => {
     return id.replaceAll("-", "");
   };
@@ -17,6 +16,9 @@ const TocBanner = ({ slug, tableOfContents }: TocProps) => {
     if (indentLevel === 2) return "ml-8 text-sm";
   };
 
+  if (tableOfContents.length === 0) {
+    return <></>;
+  }
   return (
     <>
       <SubTitle className="mb-4 text-lg font-bold">목차</SubTitle>
@@ -27,7 +29,12 @@ const TocBanner = ({ slug, tableOfContents }: TocProps) => {
               <li className="mb-1 font-light tracking-tighter" key={toc.id}>
                 <LinkText
                   href={`/blog/${slug}#${getTocLink(toc.id)}`}
-                  className={getStyle(toc.indentLevel)}
+                  className={cn(
+                    getStyle(toc.indentLevel),
+                    activeId === getTocLink(toc.id)
+                      ? "text-primary font-bold"
+                      : "",
+                  )}
                 >
                   {toc.text}
                 </LinkText>
