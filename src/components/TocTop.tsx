@@ -1,6 +1,11 @@
 import { TableOfContentsEntry } from "@/libs/notion";
 import SubTitle from "./base/SubTitle";
 import LinkText from "./base/LinkText";
+import Divider from "./base/Divider";
+import { CgDetailsMore } from "@react-icons/all-files/cg/CgDetailsMore";
+import { BsDot } from "@react-icons/all-files/bs/BsDot";
+
+import IconText from "./base/IconText";
 
 export interface TocProps {
   slug: string;
@@ -24,19 +29,27 @@ const TocTop = ({ slug, tableOfContents }: TocProps) => {
 
   return (
     <>
-      <SubTitle className="mb-2 px-2 text-xl font-bold">
-        Table of contents
+      <Divider className="border-1 mb-4 dark:border-neutral-300" />
+      <SubTitle className="mb-2 px-2">
+        <IconText
+          Icon={CgDetailsMore}
+          iconsize={25}
+          text="Table of Contents"
+          className="gap-3 text-xl font-bold"
+        />
       </SubTitle>
       <ul className="px-2">
         {tableOfContents.map(
           toc =>
             toc.text !== "" && (
               <li className="mb-1 tracking-tighter" key={toc.id}>
-                <LinkText
-                  href={`/blog/${slug}#${getTocLink(toc.id)}`}
-                  className={getStyle(toc.indentLevel)}
-                >
-                  {toc.text}
+                <LinkText href={`/blog/${slug}#${getTocLink(toc.id)}`}>
+                  <IconText
+                    Icon={BsDot}
+                    iconsize={30}
+                    text={toc.text}
+                    className={getStyle(toc.indentLevel)}
+                  />
                 </LinkText>
               </li>
             ),
