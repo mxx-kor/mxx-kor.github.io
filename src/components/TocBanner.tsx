@@ -3,6 +3,11 @@ import LinkText from "./base/LinkText";
 import SubTitle from "./base/SubTitle";
 import { cn } from "@/libs/core";
 import useScrollSpy from "@/hooks/useScrollSpy";
+import IconButton from "./base/IconButton";
+import { AiOutlineVerticalAlignTop } from "@react-icons/all-files/ai/AiOutlineVerticalAlignTop";
+import { RiDiscussLine } from "@react-icons/all-files/ri/RiDiscussLine";
+import { RiArrowGoBackFill } from "@react-icons/all-files/ri/RiArrowGoBackFill";
+import Link from "next/link";
 
 const TocBanner = ({ slug, tableOfContents }: TocProps) => {
   const activeId = useScrollSpy();
@@ -22,7 +27,7 @@ const TocBanner = ({ slug, tableOfContents }: TocProps) => {
   return (
     <>
       <SubTitle className="mb-4 text-lg font-bold">목차</SubTitle>
-      <ul>
+      <ul className="mb-2">
         {tableOfContents.map(
           toc =>
             toc.text !== "" && (
@@ -33,7 +38,7 @@ const TocBanner = ({ slug, tableOfContents }: TocProps) => {
                     getStyle(toc.indentLevel),
                     activeId === getTocLink(toc.id)
                       ? "text-primary font-bold"
-                      : "",
+                      : "hover:font-normal",
                   )}
                 >
                   {toc.text}
@@ -42,6 +47,27 @@ const TocBanner = ({ slug, tableOfContents }: TocProps) => {
             ),
         )}
       </ul>
+      <div className="bg-tag flex w-44 justify-between gap-2 rounded-xl px-4">
+        <Link href="/blog">
+          <IconButton>
+            <RiArrowGoBackFill />
+          </IconButton>
+        </Link>
+        <IconButton
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <AiOutlineVerticalAlignTop size={22} />
+        </IconButton>
+        <IconButton
+          onClick={() =>
+            document
+              .querySelector(".giscus")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }
+        >
+          <RiDiscussLine size={22} />
+        </IconButton>
+      </div>
     </>
   );
 };
