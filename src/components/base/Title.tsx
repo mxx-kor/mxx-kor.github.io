@@ -1,5 +1,6 @@
-import { cn } from "@/libs/core";
 import { memo } from "react";
+
+import { cn } from "@/libs/core";
 
 const Title = memo(function Title({
   className,

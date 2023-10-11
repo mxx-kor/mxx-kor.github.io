@@ -1,10 +1,12 @@
-import React, { ReactNode } from "react";
-import Header from "@/components/Header";
 import Head from "next/head";
-import Contacts from "../Contacts";
-import Divider from "../base/Divider";
-import CopyRight from "../CopyRight";
 import { ThemeProvider } from "next-themes";
+import React, { ReactNode } from "react";
+
+import Header from "@/components/Header";
+
+import Divider from "../base/Divider";
+import Contacts from "../Contacts";
+import CopyRight from "../CopyRight";
 
 const BaseLayout = ({ children }: { children: ReactNode }) => {
   return (

@@ -1,14 +1,15 @@
+import { m } from "framer-motion";
+
 import { getDataBase } from "@/apis/notion";
-import PostListItem from "@/components/PostListItem";
-import { PageSEO } from "@/components/SEO";
 import PlainText from "@/components/base/PlainText";
 import TextInput from "@/components/base/TextInput";
 import Title from "@/components/base/Title";
+import PostListItem from "@/components/PostListItem";
+import { PageSEO } from "@/components/SEO";
 import useSearch from "@/hooks/useSearch";
 import { fadeInUp, staggerChild } from "@/libs/animations";
 import { typeGuardedPosts } from "@/libs/notion";
 import { PostInfo } from "@/types/notion";
-import { m } from "framer-motion";
 
 export async function getStaticProps() {
   const db = await getDataBase();

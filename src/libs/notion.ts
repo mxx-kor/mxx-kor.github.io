@@ -2,9 +2,10 @@ import {
   PageObjectResponse,
   QueryDatabaseResponse,
 } from "@notionhq/client/build/src/api-endpoints";
-import { BlockType, PostInfo } from "@/types/notion";
 import { ExtendedRecordMap } from "notion-types";
 import { getTextContent } from "notion-utils";
+
+import { BlockType, PostInfo } from "@/types/notion";
 
 export const typeGuardedPosts = (db: QueryDatabaseResponse) => {
   const results = db.results.map(post => {

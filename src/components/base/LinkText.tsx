@@ -1,5 +1,6 @@
-import { cn } from "@/libs/core";
 import Link from "next/link";
+
+import { cn } from "@/libs/core";
 
 const LinkText = ({
   className,

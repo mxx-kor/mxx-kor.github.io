@@ -1,38 +1,37 @@
-import { getDataBase, getNotionPage, getPost } from "@/apis/notion";
-import Comments from "@/components/Comments";
-import BaseLayout from "@/components/Layouts/BaseLayout";
-import PostLayout from "@/components/Layouts/PostLayout";
+// core styles shared by all of react-notion-x (required)
+import "react-notion-x/src/styles.css";
+// used for code syntax highlighting (optional)
+import "prismjs/themes/prism-tomorrow.css";
+// used for rendering equations (optional)
+import "katex/dist/katex.min.css";
+
 import {
   PageObjectResponse,
   RichTextItemResponse,
 } from "@notionhq/client/build/src/api-endpoints";
+import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
 import { GetStaticPropsContext } from "next";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
+import { ExtendedRecordMap } from "notion-types";
 import { Fragment, ReactElement, useEffect, useState } from "react";
 import { NotionRenderer } from "react-notion-x";
-import dynamic from "next/dynamic";
-import { ExtendedRecordMap } from "notion-types";
-import useDarkMode from "@/hooks/useDarkMode";
-import Link from "next/link";
-import Image from "next/image";
-import { BlogSEO } from "@/components/SEO";
-import { PostInfo } from "@/types/notion";
-import Title from "@/components/base/Title";
-import Tag from "@/components/base/Tag";
-import { TableOfContentsEntry, getTableOfContents } from "@/libs/notion";
-import TocTop from "@/components/TocTop";
-import { dateFormat } from "@/libs/format";
-import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
+
+import { getDataBase, getNotionPage, getPost } from "@/apis/notion";
 import IconText from "@/components/base/IconText";
+import Tag from "@/components/base/Tag";
+import Title from "@/components/base/Title";
+import Comments from "@/components/Comments";
+import BaseLayout from "@/components/Layouts/BaseLayout";
+import PostLayout from "@/components/Layouts/PostLayout";
+import { BlogSEO } from "@/components/SEO";
 import TocBanner from "@/components/TocBanner";
-
-// core styles shared by all of react-notion-x (required)
-import "react-notion-x/src/styles.css";
-
-// used for code syntax highlighting (optional)
-import "prismjs/themes/prism-tomorrow.css";
-
-// used for rendering equations (optional)
-import "katex/dist/katex.min.css";
+import TocTop from "@/components/TocTop";
+import useDarkMode from "@/hooks/useDarkMode";
+import { dateFormat } from "@/libs/format";
+import { getTableOfContents, TableOfContentsEntry } from "@/libs/notion";
+import { PostInfo } from "@/types/notion";
 
 const Code = dynamic(() =>
   import("react-notion-x/build/third-party/code").then(m => m.Code),

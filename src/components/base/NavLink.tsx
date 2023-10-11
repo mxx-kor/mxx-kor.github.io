@@ -1,7 +1,8 @@
-import { cn } from "@/libs/core";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ComponentProps } from "react";
+
+import { cn } from "@/libs/core";
 
 interface NavLink extends ComponentProps<typeof Link> {
   href: string;

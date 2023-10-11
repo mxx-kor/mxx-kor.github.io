@@ -1,6 +1,7 @@
+import { NextSeo } from "next-seo";
+
 import { defaultImage, siteConfig } from "@/config";
 import { PostInfo } from "@/types/notion";
-import { NextSeo } from "next-seo";
 
 interface PageSEOProps {
   title?: string;

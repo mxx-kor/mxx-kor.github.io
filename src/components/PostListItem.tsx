@@ -1,11 +1,13 @@
-import IconText from "./base/IconText";
 import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
-import { PostInfo } from "@/types/notion";
-import PlainText from "./base/PlainText";
 import Link from "next/link";
-import Tag from "./base/Tag";
 import { Fragment, memo } from "react";
+
 import { dateFormat } from "@/libs/format";
+import { PostInfo } from "@/types/notion";
+
+import IconText from "./base/IconText";
+import PlainText from "./base/PlainText";
+import Tag from "./base/Tag";
 
 const PostListItem = memo(function PostListItem({ ...post }: PostInfo) {
   const { properties, created_time } = post;

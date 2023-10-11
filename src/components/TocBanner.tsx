@@ -1,13 +1,15 @@
-import { TocProps } from "./TocTop";
+import { AiOutlineVerticalAlignTop } from "@react-icons/all-files/ai/AiOutlineVerticalAlignTop";
+import { RiArrowGoBackFill } from "@react-icons/all-files/ri/RiArrowGoBackFill";
+import { RiDiscussLine } from "@react-icons/all-files/ri/RiDiscussLine";
+import Link from "next/link";
+
+import useScrollSpy from "@/hooks/useScrollSpy";
+import { cn } from "@/libs/core";
+
+import IconButton from "./base/IconButton";
 import LinkText from "./base/LinkText";
 import SubTitle from "./base/SubTitle";
-import { cn } from "@/libs/core";
-import useScrollSpy from "@/hooks/useScrollSpy";
-import IconButton from "./base/IconButton";
-import { AiOutlineVerticalAlignTop } from "@react-icons/all-files/ai/AiOutlineVerticalAlignTop";
-import { RiDiscussLine } from "@react-icons/all-files/ri/RiDiscussLine";
-import { RiArrowGoBackFill } from "@react-icons/all-files/ri/RiArrowGoBackFill";
-import Link from "next/link";
+import { TocProps } from "./TocTop";
 
 const TocBanner = ({ slug, tableOfContents }: TocProps) => {
   const activeId = useScrollSpy();

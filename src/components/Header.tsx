@@ -1,6 +1,7 @@
-import ThemeSwitch from "./ThemeSwitch";
 import { siteConfig } from "@/config";
+
 import NavLink from "./base/NavLink";
+import ThemeSwitch from "./ThemeSwitch";
 
 const Header = () => {
   return (

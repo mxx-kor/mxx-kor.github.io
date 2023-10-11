@@ -1,8 +1,9 @@
-import { ReactNode } from "react";
-import Link from "next/link";
 import { RiArrowGoBackFill } from "@react-icons/all-files/ri/RiArrowGoBackFill";
-import IconText from "../base/IconText";
+import Link from "next/link";
+import { ReactNode } from "react";
+
 import IconButton from "../base/IconButton";
+import IconText from "../base/IconText";
 import ScrollProgressBar from "../ScrollProgressBar";
 
 const SubLayout = ({ children }: { children: ReactNode }) => {

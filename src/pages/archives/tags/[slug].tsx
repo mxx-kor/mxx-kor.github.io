@@ -1,16 +1,17 @@
+import { m } from "framer-motion";
+import { GetStaticPropsContext } from "next";
+
 import { getDataBase } from "@/apis/notion";
-import PostListItem from "@/components/PostListItem";
-import { PageSEO } from "@/components/SEO";
 import Badge from "@/components/base/Badge";
 import Divider from "@/components/base/Divider";
 import PlainText from "@/components/base/PlainText";
 import SubTitle from "@/components/base/SubTitle";
 import Title from "@/components/base/Title";
+import PostListItem from "@/components/PostListItem";
+import { PageSEO } from "@/components/SEO";
+import { fadeInUp, staggerChild } from "@/libs/animations";
 import { typeGuardedPosts } from "@/libs/notion";
 import { PostInfo } from "@/types/notion";
-import { GetStaticPropsContext } from "next";
-import { m } from "framer-motion";
-import { fadeInUp, staggerChild } from "@/libs/animations";
 
 export const getStaticPaths = async () => {
   const db = await getDataBase();

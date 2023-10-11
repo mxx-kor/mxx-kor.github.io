@@ -1,16 +1,18 @@
-import { AppProps } from "next/app";
 import "@/styles/globals.css";
-import BaseLayout from "@/components/Layouts/BaseLayout";
+
+import { domAnimation, LazyMotion } from "framer-motion";
 import { NextPage } from "next";
-import { ReactElement, ReactNode } from "react";
-import Font from "@/components/Font";
-import { DefaultSeo } from "next-seo";
-import { seoConfig } from "@/config";
-import { LazyMotion, domAnimation } from "framer-motion";
+import { AppProps } from "next/app";
 import Script from "next/script";
-import * as gtag from "@/libs/gtag";
-import { isDev } from "@/libs/core";
+import { DefaultSeo } from "next-seo";
+import { ReactElement, ReactNode } from "react";
+
+import Font from "@/components/Font";
+import BaseLayout from "@/components/Layouts/BaseLayout";
+import { seoConfig } from "@/config";
 import useGtag from "@/hooks/useGtag";
+import { isDev } from "@/libs/core";
+import * as gtag from "@/libs/gtag";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;

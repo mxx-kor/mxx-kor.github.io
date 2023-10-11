@@ -1,16 +1,17 @@
+import { RiMoreFill } from "@react-icons/all-files/ri/RiMoreFill";
+import { m } from "framer-motion";
+import { Fragment } from "react";
+
 import { getDataBase } from "@/apis/notion";
-import PostItemCard from "@/components/PostItemCard";
 import IconText from "@/components/base/IconText";
 import LinkText from "@/components/base/LinkText";
 import PlainText from "@/components/base/PlainText";
 import SubTitle from "@/components/base/SubTitle";
 import Title from "@/components/base/Title";
-import { PostInfo } from "@/types/notion";
-import { RiMoreFill } from "@react-icons/all-files/ri/RiMoreFill";
-import { Fragment } from "react";
-import { m } from "framer-motion";
+import PostItemCard from "@/components/PostItemCard";
 import { fadeIn, staggerChild } from "@/libs/animations";
 import { typeGuardedPosts } from "@/libs/notion";
+import { PostInfo } from "@/types/notion";
 
 export async function getStaticProps() {
   const db = await getDataBase({

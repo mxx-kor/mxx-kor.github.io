@@ -1,7 +1,8 @@
+import Link from "next/link";
+import { Fragment } from "react";
+
 import { siteConfig } from "@/config";
 import { getKeys } from "@/libs/core";
-import Link from "next/link";
-import React, { Fragment } from "react";
 
 const poweredBy = {
   "Next.js": "https://nextjs.org/",

@@ -1,5 +1,6 @@
-import { cn } from "@/libs/core";
 import { motion, useScroll } from "framer-motion";
+
+import { cn } from "@/libs/core";
 
 const ScrollProgressBar = () => {
   const { scrollYProgress } = useScroll();

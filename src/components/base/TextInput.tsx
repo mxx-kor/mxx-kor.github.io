@@ -1,5 +1,6 @@
-import { cn } from "@/libs/core";
 import { ComponentProps } from "react";
+
+import { cn } from "@/libs/core";
 
 const TextInput = ({ className, ...props }: ComponentProps<"input">) => {
   return (

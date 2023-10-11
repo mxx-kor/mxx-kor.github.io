@@ -1,15 +1,16 @@
-import { PageSEO } from "@/components/SEO";
+import { HiOutlineLink } from "@react-icons/all-files/hi/HiOutlineLink";
+import { m } from "framer-motion";
+import Image from "next/image";
+
 import Badge from "@/components/base/Badge";
 import Divider from "@/components/base/Divider";
 import PlainText from "@/components/base/PlainText";
 import SubTitle from "@/components/base/SubTitle";
 import Title from "@/components/base/Title";
-import Image from "next/image";
-import { HiOutlineLink } from "@react-icons/all-files/hi/HiOutlineLink";
+import { PageSEO } from "@/components/SEO";
 import { aboutMe, devExperience, projects } from "@/constants/about";
-import { getKeys } from "@/libs/core";
-import { m } from "framer-motion";
 import { fadeIn, staggerChild } from "@/libs/animations";
+import { getKeys } from "@/libs/core";
 
 const About = () => {
   return (

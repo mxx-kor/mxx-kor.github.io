@@ -1,4 +1,5 @@
 import { siteConfig } from "@/config";
+
 import ContactIcons from "./ContactIcons";
 
 const Contacts = () => {

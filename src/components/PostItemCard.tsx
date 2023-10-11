@@ -1,13 +1,15 @@
-import { defaultImage } from "@/config";
-import { PostInfo } from "@/types/notion";
-import Image from "next/image";
-import Link from "next/link";
-import IconText from "./base/IconText";
 import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
 import { m } from "framer-motion";
-import { fadeInUp } from "@/libs/animations";
+import Image from "next/image";
+import Link from "next/link";
+
+import { defaultImage } from "@/config";
 import { unsplashImages } from "@/constants/images";
+import { fadeInUp } from "@/libs/animations";
 import { dateFormat } from "@/libs/format";
+import { PostInfo } from "@/types/notion";
+
+import IconText from "./base/IconText";
 
 interface postItemCardProps {
   idx: number;

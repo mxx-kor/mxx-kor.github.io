@@ -1,16 +1,17 @@
+import { m } from "framer-motion";
+import { Fragment } from "react";
+
 import { getDataBase } from "@/apis/notion";
-import { PageSEO } from "@/components/SEO";
 import Divider from "@/components/base/Divider";
 import LinkText from "@/components/base/LinkText";
 import SubTitle from "@/components/base/SubTitle";
 import Tag from "@/components/base/Tag";
 import Title from "@/components/base/Title";
+import { PageSEO } from "@/components/SEO";
+import { fadeIn, fadeInUp, staggerChild } from "@/libs/animations";
 import { dateFormat } from "@/libs/format";
 import { classifyPosts, typeGuardedPosts } from "@/libs/notion";
 import { PostInfo } from "@/types/notion";
-import { Fragment } from "react";
-import { m } from "framer-motion";
-import { fadeIn, fadeInUp, staggerChild } from "@/libs/animations";
 
 export async function getStaticProps() {
   const db = await getDataBase();

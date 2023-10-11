@@ -1,6 +1,7 @@
-import { cn } from "@/libs/core";
 import { IconType } from "@react-icons/all-files";
 import { ReactNode } from "react";
+
+import { cn } from "@/libs/core";
 
 interface IconTextProps {
   Icon: IconType;

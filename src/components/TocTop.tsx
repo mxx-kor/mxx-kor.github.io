@@ -1,11 +1,12 @@
-import { TableOfContentsEntry } from "@/libs/notion";
-import SubTitle from "./base/SubTitle";
-import LinkText from "./base/LinkText";
-import Divider from "./base/Divider";
-import { CgDetailsMore } from "@react-icons/all-files/cg/CgDetailsMore";
 import { BsDot } from "@react-icons/all-files/bs/BsDot";
+import { CgDetailsMore } from "@react-icons/all-files/cg/CgDetailsMore";
 
+import { TableOfContentsEntry } from "@/libs/notion";
+
+import Divider from "./base/Divider";
 import IconText from "./base/IconText";
+import LinkText from "./base/LinkText";
+import SubTitle from "./base/SubTitle";
 
 export interface TocProps {
   slug: string;

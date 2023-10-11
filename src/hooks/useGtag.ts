@@ -1,7 +1,8 @@
-import { isDev } from "@/libs/core";
-import { pageview } from "@/libs/gtag";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+
+import { isDev } from "@/libs/core";
+import { pageview } from "@/libs/gtag";
 
 const useGtag = () => {
   const router = useRouter();
