@@ -30,7 +30,7 @@ const PostListItem = memo(function PostListItem({ ...post }: PostInfo) {
         </PlainText>
       </Link>
       <div className="flex justify-between">
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {tags.map(tag => (
             <Fragment key={tag.id}>
               <Tag name={tag.name} />
