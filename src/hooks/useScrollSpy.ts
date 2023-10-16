@@ -12,6 +12,8 @@ const getIntersectionObserver = (
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const target = entry.target as HTMLElement;
+        // 내용이 없는 h 태그 방어코드
+        if (!target.querySelector(".notion-h-title")?.textContent) return;
         if (target.dataset.id) {
           setState(target.dataset.id);
         }

@@ -20,7 +20,7 @@ const TocBanner = ({ slug, tableOfContents }: TocProps) => {
   const getStyle = (indentLevel: number) => {
     if (indentLevel === 0) return "text-base";
     if (indentLevel === 1) return "ml-4 text-sm";
-    if (indentLevel === 2) return "ml-8 text-sm";
+    if (indentLevel === 2) return "ml-10 text-sm";
   };
 
   if (tableOfContents.length === 0) {
