@@ -1,43 +1,42 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useMotionValueEvent, useScroll } from "framer-motion";
+import { useRef, useState } from "react";
 
-const observerOption = {
-  threshold: 0.4,
-  rootMargin: "-5% 0px -90% 0px",
-};
-
-const getIntersectionObserver = (
-  setState: Dispatch<SetStateAction<string>>,
-) => {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const target = entry.target as HTMLElement;
-        // 내용이 없는 h 태그 방어코드
-        if (!target.querySelector(".notion-h-title")?.textContent) return;
-        if (target.dataset.id) {
-          setState(target.dataset.id);
-        }
-      }
-    });
-  }, observerOption);
-
-  return observer;
-};
+interface hElementPositionRefType {
+  id: string;
+  top: number;
+}
 
 const useScrollSpy = () => {
+  const hElementPositions = useRef<hElementPositionRefType[]>();
   const [activeId, setActiveId] = useState("");
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    const observer = getIntersectionObserver(setActiveId);
-    const headingElements = Array.from(document.querySelectorAll(".notion-h"));
-    headingElements.map(header => {
-      observer.observe(header);
-    });
+  const getHTagPositions = () => {
+    const pageTop = 201;
+    hElementPositions.current = Array.from(
+      document.querySelectorAll<HTMLElement>(".notion-h"),
+    )
+      .filter(header => header.querySelector(".notion-h-title")?.textContent)
+      .map(header => ({
+        id: header.dataset.id as string,
+        top: header.offsetTop + pageTop + 1,
+      }));
+  };
 
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+  useMotionValueEvent(scrollY, "change", latest => {
+    getHTagPositions();
+    let headingId = "";
+    if (hElementPositions.current) {
+      for (let i = 0; i < hElementPositions.current.length; i++) {
+        if (latest >= hElementPositions.current[i].top) {
+          headingId = hElementPositions.current[i].id;
+          continue;
+        }
+        break;
+      }
+    }
+    setActiveId(headingId);
+  });
 
   return activeId;
 };
