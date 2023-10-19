@@ -1,3 +1,5 @@
+import { TableOfContentsEntry } from "@/libs/notion";
+
 export type PostInfo = {
   id: string;
   created_time: string;
@@ -91,3 +93,8 @@ export type BlockType =
   | "breadcrumb"
   | "miro"
   | string;
+
+export type TocProps = {
+  slug: string;
+  tableOfContents: Array<TableOfContentsEntry>;
+};

@@ -5,11 +5,11 @@ import Link from "next/link";
 
 import useScrollSpy from "@/hooks/useScrollSpy";
 import { cn } from "@/libs/core";
+import { TocProps } from "@/types/notion";
 
 import IconButton from "./base/IconButton";
 import LinkText from "./base/LinkText";
 import SubTitle from "./base/SubTitle";
-import { TocProps } from "./TocTop";
 
 const TocBanner = ({ slug, tableOfContents }: TocProps) => {
   const activeId = useScrollSpy();

@@ -1,17 +1,12 @@
 import { BsDot } from "@react-icons/all-files/bs/BsDot";
 import { CgDetailsMore } from "@react-icons/all-files/cg/CgDetailsMore";
 
-import { TableOfContentsEntry } from "@/libs/notion";
+import { TocProps } from "@/types/notion";
 
 import Divider from "./base/Divider";
 import IconText from "./base/IconText";
 import LinkText from "./base/LinkText";
 import SubTitle from "./base/SubTitle";
-
-export interface TocProps {
-  slug: string;
-  tableOfContents: Array<TableOfContentsEntry>;
-}
 
 const TocTop = ({ slug, tableOfContents }: TocProps) => {
   if (tableOfContents.length === 0) {
