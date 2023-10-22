@@ -29,8 +29,11 @@ import { BlogSEO } from "@/components/SEO";
 import TocBanner from "@/components/TocBanner";
 import TocTop from "@/components/TocTop";
 import useDarkMode from "@/hooks/useDarkMode";
-import { dateFormat } from "@/libs/format";
-import { getTableOfContents, TableOfContentsEntry } from "@/libs/notion";
+import {
+  getPostInfo,
+  getTableOfContents,
+  TableOfContentsEntry,
+} from "@/libs/notion";
 import { PostInfo } from "@/types/notion";
 
 const Code = dynamic(() =>
@@ -108,11 +111,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 const Post = ({ post, recordMap, tableOfContents }: PostProps) => {
   const { resolvedTheme } = useDarkMode();
   const [theme, setTheme] = useState(true);
-  const { properties, created_time } = post;
-  const title = properties.Title.rich_text[0].plain_text;
-  const tags = properties.Tags.multi_select;
-  const slug = properties.Slug.title[0].plain_text;
-  const createdTime = dateFormat(created_time).replaceAll(" ", "").slice(0, -1);
+  const { title, tags, slug, createdTime } = getPostInfo(post);
 
   useEffect(() => {
     const isDarkTheme = resolvedTheme === "dark" ? true : false;

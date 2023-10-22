@@ -6,7 +6,7 @@ import Link from "next/link";
 import { defaultImage } from "@/config";
 import { unsplashImages } from "@/constants/images";
 import { fadeInUp } from "@/libs/animations";
-import { dateFormat } from "@/libs/format";
+import { getPostInfo } from "@/libs/notion";
 import { PostInfo } from "@/types/notion";
 
 import IconText from "./base/IconText";
@@ -15,15 +15,8 @@ interface postItemCardProps {
   idx: number;
 }
 
-const PostItemCard = ({
-  created_time,
-  properties,
-  cover,
-  idx,
-}: postItemCardProps & PostInfo) => {
-  const slug = properties.Slug.title[0].plain_text;
-  const title = properties.Title.rich_text[0].plain_text;
-  const createdTime = dateFormat(created_time).replaceAll(" ", "").slice(0, -1);
+const PostItemCard = ({ idx, ...post }: postItemCardProps & PostInfo) => {
+  const { title, slug, createdTime, cover } = getPostInfo(post);
   const coverImage = cover === null ? defaultImage : unsplashImages[idx];
 
   return (

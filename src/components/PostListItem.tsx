@@ -2,7 +2,7 @@ import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
 import Link from "next/link";
 import { Fragment, memo } from "react";
 
-import { dateFormat } from "@/libs/format";
+import { getPostInfo } from "@/libs/notion";
 import { PostInfo } from "@/types/notion";
 
 import IconText from "./base/IconText";
@@ -10,14 +10,7 @@ import PlainText from "./base/PlainText";
 import Tag from "./base/Tag";
 
 const PostListItem = memo(function PostListItem({ ...post }: PostInfo) {
-  const { properties, created_time } = post;
-  const createdTime = dateFormat(created_time).replaceAll(" ", "").slice(0, -1);
-  const slug = properties.Slug.title[0].plain_text;
-  const title = properties.Title.rich_text[0].plain_text;
-  const summary =
-    properties.Summary.rich_text[0] &&
-    properties.Summary.rich_text[0].plain_text;
-  const tags = properties.Tags.multi_select;
+  const { title, slug, summary, tags, createdTime } = getPostInfo(post);
 
   return (
     <>

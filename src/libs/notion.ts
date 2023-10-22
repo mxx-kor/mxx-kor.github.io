@@ -7,6 +7,8 @@ import { getTextContent } from "notion-utils";
 
 import { BlockType, PostInfo } from "@/types/notion";
 
+import { dateFormat } from "./format";
+
 export const typeGuardedPosts = (db: QueryDatabaseResponse) => {
   const results = db.results.map(post => {
     const data = post as PageObjectResponse;
@@ -116,4 +118,24 @@ export const getTableOfContents = (
   }
 
   return toc;
+};
+
+export const getPostInfo = (post: PostInfo) => {
+  const { properties, created_time, cover } = post;
+  const title = properties.Title.rich_text[0].plain_text;
+  const tags = properties.Tags.multi_select;
+  const slug = properties.Slug.title[0].plain_text;
+  const createdTime = dateFormat(created_time).replaceAll(" ", "").slice(0, -1);
+  const summary =
+    properties.Summary.rich_text[0] &&
+    properties.Summary.rich_text[0].plain_text;
+
+  return {
+    title,
+    tags,
+    slug,
+    createdTime,
+    summary,
+    cover,
+  };
 };

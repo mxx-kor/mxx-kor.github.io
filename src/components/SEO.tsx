@@ -1,6 +1,7 @@
 import { NextSeo } from "next-seo";
 
 import { defaultImage, siteConfig } from "@/config";
+import { getPostInfo } from "@/libs/notion";
 import { PostInfo } from "@/types/notion";
 
 interface PageSEOProps {
@@ -32,26 +33,24 @@ export const PageSEO = ({
   );
 };
 
-export const BlogSEO = ({ ...props }: PostInfo) => {
-  const { properties, created_time, last_edited_time, cover } = props;
-  const title = properties.Title.rich_text[0].plain_text;
-  const summary =
-    properties.Summary.rich_text[0]?.plain_text || siteConfig.description;
-  const tags = properties.Tags.multi_select.map(tag => tag.name);
+export const BlogSEO = ({ ...post }: PostInfo) => {
+  const { title, summary, tags, cover, slug } = getPostInfo(post);
+  const { created_time, last_edited_time } = post;
+  const tagsByName = tags.map(tag => tag.name);
   const coverImage =
     cover === null
       ? defaultImage
       : cover.type === "external"
       ? cover.external.url
       : cover.file.url;
-  const url = `${siteConfig.url}/blog/${properties.Slug.title[0].plain_text}`;
+  const url = `${siteConfig.url}/blog/${slug}`;
   const createdTime = new Date(created_time).toISOString();
   const lastEditTime = new Date(last_edited_time).toISOString();
 
   return (
     <NextSeo
       title={title}
-      description={summary}
+      description={summary || siteConfig.description}
       canonical={url}
       openGraph={{
         type: "article",
@@ -59,7 +58,7 @@ export const BlogSEO = ({ ...props }: PostInfo) => {
           publishedTime: createdTime,
           modifiedTime: lastEditTime,
           authors: ["https://github.com/mxx-kor"],
-          tags,
+          tags: tagsByName,
         },
         url,
         title,
