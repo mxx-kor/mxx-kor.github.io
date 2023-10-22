@@ -8,13 +8,21 @@ interface IconTextProps {
   iconsize?: number;
   text?: ReactNode;
   className?: string;
+  position?: "left" | "right";
 }
 
-const IconText = ({ Icon, iconsize = 14, text, className }: IconTextProps) => {
+const IconText = ({
+  Icon,
+  iconsize = 14,
+  text,
+  position = "left",
+  className,
+}: IconTextProps) => {
   return (
     <div className={cn("flex items-center gap-1 text-xs", className)}>
-      <Icon size={iconsize} />
+      {position === "left" && <Icon size={iconsize} />}
       <span>{text}</span>
+      {position === "right" && <Icon size={iconsize} />}
     </div>
   );
 };

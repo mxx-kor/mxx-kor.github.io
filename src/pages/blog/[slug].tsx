@@ -5,11 +5,10 @@ import "prismjs/themes/prism-tomorrow.css";
 // used for rendering equations (optional)
 import "katex/dist/katex.min.css";
 
-import {
-  PageObjectResponse,
-  RichTextItemResponse,
-} from "@notionhq/client/build/src/api-endpoints";
+import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
 import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
+import { RiArrowLeftLine } from "@react-icons/all-files/ri/RiArrowLeftLine";
+import { RiArrowRightLine } from "@react-icons/all-files/ri/RiArrowRightLine";
 import { GetStaticPropsContext } from "next";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -19,7 +18,9 @@ import { Fragment, ReactElement, useEffect, useState } from "react";
 import { NotionRenderer } from "react-notion-x";
 
 import { getDataBase, getNotionPage, getPost } from "@/apis/notion";
+import Divider from "@/components/base/Divider";
 import IconText from "@/components/base/IconText";
+import LinkText from "@/components/base/LinkText";
 import Tag from "@/components/base/Tag";
 import Title from "@/components/base/Title";
 import Comments from "@/components/Comments";
@@ -33,6 +34,7 @@ import {
   getPostInfo,
   getTableOfContents,
   TableOfContentsEntry,
+  typeGuardedPosts,
 } from "@/libs/notion";
 import { PostInfo } from "@/types/notion";
 
@@ -59,7 +61,9 @@ const Modal = dynamic(
 );
 
 interface PostProps {
+  prevPost: PostInfo | null;
   post: PostInfo;
+  nextPost: PostInfo | null;
   recordMap: ExtendedRecordMap;
   tableOfContents: Array<TableOfContentsEntry>;
 }
@@ -87,28 +91,43 @@ export const getStaticPaths = async () => {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const slug = context.params && context.params.slug;
-  const db = await getDataBase({
-    filter: {
-      property: "Slug",
-      rich_text: {
-        equals: slug,
-      },
-    },
-  });
-  const { id } = db.results[0] as PageObjectResponse;
+  const db = await getDataBase();
+  const posts = typeGuardedPosts(db);
+  const { id } = posts.filter(post => {
+    if ("properties" in post) {
+      if ("title" in post.properties.Slug) {
+        const slugFirstTitle = post.properties.Slug
+          .title as RichTextItemResponse[];
+        return slugFirstTitle[0].plain_text === slug;
+      }
+    }
+  })[0];
+  const middleIndex = db.results.findIndex(result => result.id === id);
+  const [prevPost = null, nextPost = null] = [
+    db.results[middleIndex - 1],
+    db.results[middleIndex + 1],
+  ];
   const [post, recordMap] = await Promise.all([getPost(id), getNotionPage(id)]);
   const tableOfContents = getTableOfContents(recordMap);
 
   return {
     props: {
+      prevPost,
       post,
+      nextPost,
       recordMap,
       tableOfContents,
     },
   };
 }
 
-const Post = ({ post, recordMap, tableOfContents }: PostProps) => {
+const Post = ({
+  prevPost,
+  post,
+  nextPost,
+  recordMap,
+  tableOfContents,
+}: PostProps) => {
   const { resolvedTheme } = useDarkMode();
   const [theme, setTheme] = useState(true);
   const { title, tags, slug, createdTime } = getPostInfo(post);
@@ -160,6 +179,38 @@ const Post = ({ post, recordMap, tableOfContents }: PostProps) => {
             nextLink: Link,
           }}
         />
+        <Divider className="my-6" />
+        <section className="mb-12 flex justify-between px-2">
+          <div>
+            {prevPost && (
+              <LinkText
+                href={`/blog/${prevPost.properties.Slug.title[0].plain_text}`}
+              >
+                <IconText Icon={RiArrowLeftLine} text="Prev" />
+                <span className="tracking-tighter">
+                  {prevPost.properties.Title.rich_text[0].plain_text}
+                </span>
+              </LinkText>
+            )}
+          </div>
+          <div>
+            {nextPost && (
+              <LinkText
+                href={`/blog/${nextPost.properties.Slug.title[0].plain_text}`}
+              >
+                <IconText
+                  Icon={RiArrowRightLine}
+                  text="Next"
+                  position="right"
+                  className="justify-end"
+                />
+                <span className="tracking-tighter">
+                  {nextPost.properties.Title.rich_text[0].plain_text}
+                </span>
+              </LinkText>
+            )}
+          </div>
+        </section>
         <Comments />
       </article>
     </>
