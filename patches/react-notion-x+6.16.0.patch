@@ -1,0 +1,68 @@
+diff --git a/node_modules/react-notion-x/src/styles.css b/node_modules/react-notion-x/src/styles.css
+index 71b8b4a..80b1016 100644
+--- a/node_modules/react-notion-x/src/styles.css
++++ b/node_modules/react-notion-x/src/styles.css
+@@ -1,8 +1,5 @@
+ :root {
+-  --notion-font: ui-sans-serif, system-ui, apple-system, BlinkMacSystemFont,
+-    'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif,
+-    'Segoe UI Emoji', 'Segoe UI Symbol';
+-  --fg-color: rgb(55, 53, 47);
++  --fg-color: #404040;
+   --fg-color-0: rgba(55, 53, 47, 0.09);
+   --fg-color-1: rgba(55, 53, 47, 0.16);
+   --fg-color-2: rgba(55, 53, 47, 0.4);
+@@ -10,6 +7,7 @@
+   --fg-color-4: #000;
+   --fg-color-5: rgba(55, 53, 47, 0.024);
+   --fg-color-6: rgba(55, 53, 47, 0.8);
++  --fg-color-7: #171717;
+   --fg-color-icon: var(--fg-color);
+ 
+   --bg-color: #fff;
+@@ -67,7 +65,7 @@
+ }
+ 
+ .dark-mode {
+-  --fg-color: rgba(255, 255, 255, 0.9);
++  --fg-color: #d4d4d4;
+   --fg-color-0: var(--fg-color);
+   --fg-color-1: var(--fg-color);
+   --fg-color-2: var(--fg-color);
+@@ -75,6 +73,7 @@
+   --fg-color-4: var(--fg-color);
+   --fg-color-5: rgba(255, 255, 255, 0.7);
+   --fg-color-6: #fff;
++  --fg-color-7: #e5e5e5;
+   --fg-color-icon: #fff;
+ 
+   --bg-color: #2f3437;
+@@ -120,7 +119,6 @@
+   line-height: 1.5;
+   color: var(--fg-color);
+   caret-color: var(--fg-color);
+-  font-family: var(--notion-font);
+ }
+ 
+ .notion > * {
+@@ -402,6 +400,11 @@
+ 
+ .notion b {
+   font-weight: 600;
++  color: var(--fg-color-7);
++}
++
++.notion-h-title {
++  color: var(--fg-color-7);
+ }
+ 
+ .notion-title {
+@@ -647,8 +650,6 @@ svg.notion-page-icon {
+ .notion-page {
+   box-sizing: border-box;
+   width: var(--notion-max-width);
+-  padding-left: calc(min(16px, 8vw));
+-  padding-right: calc(min(16px, 8vw));
+ }
+ 
+ .notion-full-width {
