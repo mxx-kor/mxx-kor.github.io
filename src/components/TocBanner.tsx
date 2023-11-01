@@ -1,17 +1,12 @@
-import { AiOutlineVerticalAlignTop } from "@react-icons/all-files/ai/AiOutlineVerticalAlignTop";
-import { RiArrowGoBackFill } from "@react-icons/all-files/ri/RiArrowGoBackFill";
-import { RiDiscussLine } from "@react-icons/all-files/ri/RiDiscussLine";
-import Link from "next/link";
-
 import useScrollSpy from "@/hooks/useScrollSpy";
 import { cn } from "@/libs/core";
 import { TocProps } from "@/types/notion";
 
-import IconButton from "./base/IconButton";
 import LinkText from "./base/LinkText";
 import SubTitle from "./base/SubTitle";
+import ScrollRemote from "./ScrollRemote";
 
-const TocBanner = ({ slug, tableOfContents }: TocProps) => {
+const TocBanner = ({ tableOfContents }: TocProps) => {
   const activeId = useScrollSpy();
   const getTocLink = (id: string) => {
     return id.replaceAll("-", "");
@@ -35,7 +30,8 @@ const TocBanner = ({ slug, tableOfContents }: TocProps) => {
             toc.text !== "" && (
               <li className="mb-1 font-light tracking-tighter" key={toc.id}>
                 <LinkText
-                  href={`/blog/${slug}#${getTocLink(toc.id)}`}
+                  href={`#${getTocLink(toc.id)}`}
+                  scroll={false}
                   className={cn(
                     getStyle(toc.indentLevel),
                     activeId === getTocLink(toc.id)
@@ -49,27 +45,7 @@ const TocBanner = ({ slug, tableOfContents }: TocProps) => {
             ),
         )}
       </ul>
-      <div className="bg-tag flex w-44 justify-between gap-2 rounded-xl px-4">
-        <Link href="/blog">
-          <IconButton>
-            <RiArrowGoBackFill />
-          </IconButton>
-        </Link>
-        <IconButton
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        >
-          <AiOutlineVerticalAlignTop size={22} />
-        </IconButton>
-        <IconButton
-          onClick={() =>
-            document
-              .querySelector(".giscus")
-              ?.scrollIntoView({ behavior: "smooth" })
-          }
-        >
-          <RiDiscussLine size={22} />
-        </IconButton>
-      </div>
+      <ScrollRemote />
     </>
   );
 };

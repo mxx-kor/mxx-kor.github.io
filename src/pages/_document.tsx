@@ -2,7 +2,7 @@ import { Head, Html, Main, NextScript } from "next/document";
 
 const MyDocument = () => {
   return (
-    <Html lang="ko">
+    <Html lang="ko" className="scroll-smooth">
       <Head>
         <meta
           name="google-site-verification"

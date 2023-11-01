@@ -130,7 +130,7 @@ const Post = ({
 }: PostProps) => {
   const { resolvedTheme } = useDarkMode();
   const [theme, setTheme] = useState(true);
-  const { title, tags, slug, createdTime } = getPostInfo(post);
+  const { title, tags, createdTime } = getPostInfo(post);
 
   useEffect(() => {
     const isDarkTheme = resolvedTheme === "dark" ? true : false;
@@ -143,7 +143,7 @@ const Post = ({
       <article>
         <aside className="sticky top-12 hidden xl:block">
           <div className="absolute left-full w-64 rounded-2xl p-4">
-            <TocBanner slug={slug} tableOfContents={tableOfContents} />
+            <TocBanner tableOfContents={tableOfContents} />
           </div>
         </aside>
         <section>
@@ -164,7 +164,7 @@ const Post = ({
           </div>
         </section>
         <section className="mx-4 transition-all xl:hidden">
-          <TocTop slug={slug} tableOfContents={tableOfContents} />
+          <TocTop tableOfContents={tableOfContents} />
         </section>
         <NotionRenderer
           recordMap={recordMap}

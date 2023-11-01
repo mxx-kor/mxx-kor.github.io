@@ -8,7 +8,7 @@ import IconText from "./base/IconText";
 import LinkText from "./base/LinkText";
 import SubTitle from "./base/SubTitle";
 
-const TocTop = ({ slug, tableOfContents }: TocProps) => {
+const TocTop = ({ tableOfContents }: TocProps) => {
   if (tableOfContents.length === 0) {
     return <></>;
   }
@@ -39,7 +39,7 @@ const TocTop = ({ slug, tableOfContents }: TocProps) => {
           toc =>
             toc.text !== "" && (
               <li className="mb-1 tracking-tighter" key={toc.id}>
-                <LinkText href={`/blog/${slug}#${getTocLink(toc.id)}`}>
+                <LinkText href={`#${getTocLink(toc.id)}`} scroll={false}>
                   <IconText
                     Icon={BsDot}
                     iconsize={30}

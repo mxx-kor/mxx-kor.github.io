@@ -95,6 +95,5 @@ export type BlockType =
   | string;
 
 export type TocProps = {
-  slug: string;
   tableOfContents: Array<TableOfContentsEntry>;
 };
