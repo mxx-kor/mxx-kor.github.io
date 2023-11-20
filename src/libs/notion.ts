@@ -3,9 +3,9 @@ import {
   QueryDatabaseResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import { ExtendedRecordMap } from "notion-types";
-import { getTextContent } from "notion-utils";
+import { getTextContent, TableOfContentsEntry } from "notion-utils";
 
-import { BlockType, PostInfo } from "@/types/notion";
+import { PostInfo } from "@/types/notion";
 
 import { dateFormat } from "./format";
 
@@ -44,13 +44,6 @@ export const classifyPosts = (posts: PostInfo[]) => {
       return ac;
     }, {});
 };
-
-export interface TableOfContentsEntry {
-  id: string;
-  type: BlockType;
-  text: string;
-  indentLevel: number;
-}
 
 const indentLevels = {
   header: 0,

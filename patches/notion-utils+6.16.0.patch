@@ -1,0 +1,12 @@
+diff --git a/node_modules/notion-utils/build/get-page-table-of-contents.d.ts b/node_modules/notion-utils/build/get-page-table-of-contents.d.ts
+index 8b7a2ad..8787da4 100644
+--- a/node_modules/notion-utils/build/get-page-table-of-contents.d.ts
++++ b/node_modules/notion-utils/build/get-page-table-of-contents.d.ts
+@@ -1,6 +1,6 @@
+ import * as types from 'notion-types';
+ export interface TableOfContentsEntry {
+-    id: types.ID;
++    id: string;
+     type: types.BlockType;
+     text: string;
+     indentLevel: number;

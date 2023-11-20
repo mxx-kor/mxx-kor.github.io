@@ -11,9 +11,8 @@ import { RiArrowLeftLine } from "@react-icons/all-files/ri/RiArrowLeftLine";
 import { RiArrowRightLine } from "@react-icons/all-files/ri/RiArrowRightLine";
 import { GetStaticPropsContext } from "next";
 import dynamic from "next/dynamic";
-import Image from "next/image";
-import Link from "next/link";
 import { ExtendedRecordMap } from "notion-types";
+import { TableOfContentsEntry } from "notion-utils";
 import { Fragment, ReactElement, useEffect, useState } from "react";
 import { NotionRenderer } from "react-notion-x";
 
@@ -33,7 +32,6 @@ import useDarkMode from "@/hooks/useDarkMode";
 import {
   getPostInfo,
   getTableOfContents,
-  TableOfContentsEntry,
   typeGuardedPosts,
 } from "@/libs/notion";
 import { PostInfo } from "@/types/notion";
@@ -169,14 +167,13 @@ const Post = ({
         <NotionRenderer
           recordMap={recordMap}
           darkMode={theme}
+          showTableOfContents={false}
           components={{
             Code,
             Collection,
             Equation,
             Modal,
             Pdf,
-            nextImage: Image,
-            nextLink: Link,
           }}
         />
         <Divider className="my-6" />

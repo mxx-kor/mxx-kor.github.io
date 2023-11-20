@@ -1,4 +1,4 @@
-import { TableOfContentsEntry } from "@/libs/notion";
+import { TableOfContentsEntry } from "notion-utils";
 
 export type PostInfo = {
   id: string;
