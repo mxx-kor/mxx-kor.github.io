@@ -34,8 +34,8 @@ const useScrollSpy = () => {
         }
         break;
       }
+      setActiveId(headingId);
     }
-    setActiveId(headingId);
   });
 
   return activeId;
