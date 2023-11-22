@@ -10,7 +10,7 @@ const SubLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <ScrollProgressBar />
-      <Link href="/blog" className="mb-6 inline-block pl-2">
+      <Link href="/blog" className="mb-6 inline-block">
         <IconButton className="w-32">
           <IconText
             Icon={RiArrowGoBackFill}

@@ -25,7 +25,7 @@ const TocTop = ({ tableOfContents }: TocProps) => {
 
   return (
     <>
-      <Divider className="border-1 mb-4 dark:border-neutral-300" />
+      <Divider className="border-1 mb-4 dark:border-neutral-400" />
       <SubTitle className="mb-2 px-2">
         <IconText
           Icon={CgDetailsMore}

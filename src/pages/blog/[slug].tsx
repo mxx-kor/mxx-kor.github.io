@@ -161,7 +161,7 @@ const Post = ({
             ))}
           </div>
         </section>
-        <section className="mx-4 transition-all xl:hidden">
+        <section className="transition-all xl:hidden">
           <TocTop tableOfContents={tableOfContents} />
         </section>
         <NotionRenderer
