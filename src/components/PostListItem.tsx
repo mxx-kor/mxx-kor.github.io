@@ -15,9 +15,9 @@ const PostListItem = memo(function PostListItem({ ...post }: PostInfo) {
   return (
     <>
       <Link href={`/blog/${slug}`}>
-        <h3 className="text-primary mb-2 text-xl font-bold group-hover:underline">
+        <h2 className="text-primary mb-2 text-xl font-bold group-hover:underline">
           {title}
-        </h3>
+        </h2>
         <PlainText className="group-hover:text-secondary mb-2 transition-all">
           {summary}
         </PlainText>

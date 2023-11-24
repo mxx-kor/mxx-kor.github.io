@@ -21,6 +21,7 @@ const Contacts = () => {
             key={sns}
             href={contact}
             rel="noreferrer"
+            aria-label={`check author's ${sns}`}
             className="text-tertiary hover:text-primary"
           >
             <ContactIcons contact={assertedSns} />

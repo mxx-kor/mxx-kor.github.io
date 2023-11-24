@@ -11,7 +11,7 @@ const SubLayout = ({ children }: { children: ReactNode }) => {
     <>
       <ScrollProgressBar />
       <Link href="/blog" className="mb-6 inline-block">
-        <IconButton className="w-32">
+        <IconButton className="w-32" aria-label="Back to posts">
           <IconText
             Icon={RiArrowGoBackFill}
             text="Back to posts"
