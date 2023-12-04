@@ -1,5 +1,4 @@
 import { m } from "framer-motion";
-import { useEffect, useState } from "react";
 
 import { getDataBase } from "@/apis/notion";
 import PlainText from "@/components/base/PlainText";
@@ -21,23 +20,18 @@ export async function getStaticProps() {
 
 const Blog = ({ posts }: { posts: PostInfo[] }) => {
   const { searchTerm, handleSearchTerm } = useSearch();
-  const [filteredPosts, setFilteredPosts] = useState<PostInfo[]>([]);
 
-  useEffect(() => {
-    const getFilteredPosts = posts.filter(
-      post =>
-        //포스트 제목으로 검색
-        post.properties.Title.rich_text[0].plain_text
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase()) ||
-        //태그로 검색
-        post.properties.Tags.multi_select.some(tag =>
-          tag.name.toLowerCase().includes(searchTerm.toLowerCase()),
-        ),
-    );
-
-    setFilteredPosts(getFilteredPosts);
-  }, [searchTerm]);
+  const filteredPosts = posts.filter(
+    post =>
+      //포스트 제목으로 검색
+      post.properties.Title.rich_text[0].plain_text
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      //태그로 검색
+      post.properties.Tags.multi_select.some(tag =>
+        tag.name.toLowerCase().includes(searchTerm.toLowerCase()),
+      ),
+  );
 
   return (
     <>
@@ -60,13 +54,16 @@ const Blog = ({ posts }: { posts: PostInfo[] }) => {
             의 포스트가 있습니다.
           </PlainText>
         )}
-        <ul className="grid w-full gap-8 lg:grid-cols-2 lg:gap-12">
+        <m.ul
+          variants={staggerChild}
+          className="grid w-full gap-8 lg:grid-cols-2 lg:gap-12"
+        >
           {filteredPosts.map(post => (
             <m.li key={post.id} variants={fadeInUp} className="group">
               <PostListItem {...post} />
             </m.li>
           ))}
-        </ul>
+        </m.ul>
       </m.main>
     </>
   );
