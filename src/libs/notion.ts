@@ -7,7 +7,7 @@ import { getTextContent, TableOfContentsEntry } from "notion-utils";
 
 import { PostInfo } from "@/types/notion";
 
-import { dateFormat } from "./format";
+import { formatFullDate } from "./format";
 
 export const typeGuardedPosts = (db: QueryDatabaseResponse) => {
   const results = db.results.map(post => {
@@ -118,7 +118,7 @@ export const getPostInfo = (post: PostInfo) => {
   const title = properties.Title.rich_text[0].plain_text;
   const tags = properties.Tags.multi_select;
   const slug = properties.Slug.title[0].plain_text;
-  const createdTime = dateFormat(created_time).replaceAll(" ", "").slice(0, -1);
+  const createdTime = formatFullDate(created_time);
   const summary =
     properties.Summary.rich_text[0] &&
     properties.Summary.rich_text[0].plain_text;

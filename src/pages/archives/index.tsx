@@ -9,7 +9,7 @@ import Tag from "@/components/base/Tag";
 import Title from "@/components/base/Title";
 import { PageSEO } from "@/components/SEO";
 import { fadeIn, fadeInUp, staggerChild } from "@/libs/animations";
-import { dateFormat } from "@/libs/format";
+import { formatShortDate } from "@/libs/format";
 import { classifyPosts, typeGuardedPosts } from "@/libs/notion";
 import { PostInfo } from "@/types/notion";
 
@@ -80,10 +80,7 @@ const Archives = ({
                         key={post.id}
                       >
                         <span className="w-14 text-lg font-light tracking-tight">
-                          {dateFormat(post.created_time, "en-US", {
-                            month: "short",
-                            day: "2-digit",
-                          })}
+                          {formatShortDate(post.created_time)}
                         </span>
                         <LinkText
                           href={`/blog/${post.properties.Slug.title[0].plain_text}`}

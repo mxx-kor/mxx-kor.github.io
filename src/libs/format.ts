@@ -1,16 +1,22 @@
-const defaultOptions: Intl.DateTimeFormatOptions = {
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
+export const formatFullDate = (createdTime: string) => {
+  return createdTime.slice(0, 10).replaceAll("-", ".");
 };
 
-export const dateFormat = (
-  createdTime: string,
-  locales?: "ko-KR" | "en-US",
-  options?: Intl.DateTimeFormatOptions,
-) => {
-  return new Date(createdTime).toLocaleDateString(
-    locales ?? "ko-KR",
-    options ?? defaultOptions,
-  );
+export const formatShortDate = (createdTime: string) => {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const [month, date] = createdTime.slice(5, 10).split("-");
+  return `${months[parseInt(month) - 1]} ${date}`;
 };
