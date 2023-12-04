@@ -1,24 +1,16 @@
-const options = {
+const defaultOptions: Intl.DateTimeFormatOptions = {
   year: "numeric",
   month: "2-digit",
   day: "2-digit",
-} as const;
-
-type LocalesType = "en-US" | "ko-KR";
-interface DateOptionsProps {
-  month: "numeric" | "2-digit" | "long" | "short" | "narrow";
-  day: "numeric" | "2-digit";
-  year?: "numeric" | "2-digit";
-}
+};
 
 export const dateFormat = (
   createdTime: string,
-  locales?: LocalesType,
-  dateOptions?: DateOptionsProps,
+  locales?: "ko-KR" | "en-US",
+  options?: Intl.DateTimeFormatOptions,
 ) => {
-  const date = new Date(createdTime);
-  return new Intl.DateTimeFormat(
+  return new Date(createdTime).toLocaleDateString(
     locales ?? "ko-KR",
-    dateOptions ?? options,
-  ).format(date);
+    options ?? defaultOptions,
+  );
 };
