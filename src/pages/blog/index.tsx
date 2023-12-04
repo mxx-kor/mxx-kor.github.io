@@ -1,15 +1,19 @@
 import { m } from "framer-motion";
+import dynamic from "next/dynamic";
 
 import { getDataBase } from "@/apis/notion";
 import PlainText from "@/components/base/PlainText";
 import TextInput from "@/components/base/TextInput";
 import Title from "@/components/base/Title";
-import PostListItem from "@/components/PostListItem";
 import { PageSEO } from "@/components/SEO";
 import useSearch from "@/hooks/useSearch";
 import { fadeInUp, staggerChild } from "@/libs/animations";
 import { typeGuardedPosts } from "@/libs/notion";
 import { PostInfo } from "@/types/notion";
+
+const DynamicPostListItem = dynamic(() => import("@/components/PostListItem"), {
+  loading: () => <p>loading...</p>,
+});
 
 export async function getStaticProps() {
   const db = await getDataBase();
@@ -60,7 +64,7 @@ const Blog = ({ posts }: { posts: PostInfo[] }) => {
         >
           {filteredPosts.map(post => (
             <m.li key={post.id} variants={fadeInUp} className="group">
-              <PostListItem {...post} />
+              <DynamicPostListItem {...post} />
             </m.li>
           ))}
         </m.ul>
