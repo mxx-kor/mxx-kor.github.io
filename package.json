@@ -10,7 +10,8 @@
     "postbuild": "next-sitemap",
     "serve": "npx http-server out",
     "start": "npx serve@latest out",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "gh workflow run 'Manual Deploy'"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.6",
