@@ -15,5 +15,5 @@ env:
 jobs:
   call-workflow-deploy:
     name: deploy
-    uses: ./.github/workflows/deploy.yml
+    uses: ./.github/workflows/reusable-deploy.yml
     secrets: inherit
