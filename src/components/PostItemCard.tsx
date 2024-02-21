@@ -1,6 +1,5 @@
 import { FiCalendar } from "@react-icons/all-files/fi/FiCalendar";
 import { m } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 
 import { defaultImage } from "@/config";
@@ -10,6 +9,7 @@ import { getPostInfo } from "@/libs/notion";
 import { PostInfo } from "@/types/notion";
 
 import IconText from "./base/IconText";
+import ImageWithFallback from "./base/ImageWithFallback";
 
 interface postItemCardProps {
   idx: number;
@@ -27,7 +27,7 @@ const PostItemCard = ({ idx, ...post }: postItemCardProps & PostInfo) => {
         whileTap={{ scale: 0.9 }}
         className="relative"
       >
-        <Image
+        <ImageWithFallback
           src={coverImage}
           alt={title}
           width={300}

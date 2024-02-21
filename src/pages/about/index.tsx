@@ -1,9 +1,9 @@
 import { HiOutlineLink } from "@react-icons/all-files/hi/HiOutlineLink";
 import { m } from "framer-motion";
-import Image from "next/image";
 
 import Badge from "@/components/base/Badge";
 import Divider from "@/components/base/Divider";
+import ImageWithFallback from "@/components/base/ImageWithFallback";
 import PlainText from "@/components/base/PlainText";
 import SubTitle from "@/components/base/SubTitle";
 import Title from "@/components/base/Title";
@@ -26,7 +26,7 @@ const About = () => {
           variants={fadeIn}
           className="mb-6 grid grid-cols-1 items-center gap-2 sm:grid-cols-3"
         >
-          <Image
+          <ImageWithFallback
             className="mx-auto mb-4 sm:mb-0"
             src="/images/profile.png"
             width={200}
