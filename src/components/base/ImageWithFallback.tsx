@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { defaultImage } from "@/config";
 
 interface ImageWithFallbackProps extends React.ComponentProps<typeof Image> {
-  className?: string;
   fallback?: string;
 }
 

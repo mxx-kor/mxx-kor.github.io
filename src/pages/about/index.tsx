@@ -5,12 +5,14 @@ import Badge from "@/components/base/Badge";
 import Divider from "@/components/base/Divider";
 import ImageWithFallback from "@/components/base/ImageWithFallback";
 import PlainText from "@/components/base/PlainText";
+import SubText from "@/components/base/SubText";
 import SubTitle from "@/components/base/SubTitle";
 import Title from "@/components/base/Title";
 import { PageSEO } from "@/components/SEO";
 import { aboutMe, devExperience, projects } from "@/constants/about";
 import { fadeIn, staggerChild } from "@/libs/animations";
 import { getKeys } from "@/libs/core";
+import { calculateToMonths } from "@/libs/format";
 
 const About = () => {
   return (
@@ -70,9 +72,7 @@ const About = () => {
                       {project}
                     </a>
                   </h3>
-                  <span className="text-quaternary text-sm italic">
-                    since {projects[project].since}
-                  </span>
+                  <SubText>since {projects[project].since}</SubText>
                 </div>
                 <PlainText className="col-span-2">
                   {projects[project].description}
@@ -94,10 +94,11 @@ const About = () => {
                   <h3 className="text-primary text-md font-medium tracking-tight">
                     {content}
                   </h3>
-                  <span className="text-quaternary text-sm italic">
-                    {devExperience[content].period}
-                  </span>
-                  <span className="text-quaternary text-sm italic">
+                  <SubText>{devExperience[content].period}</SubText>
+                  <SubText>
+                    {calculateToMonths(devExperience[content].period)}개월
+                  </SubText>
+                  <SubText>
                     {content.includes("프로그래머스") && (
                       <a
                         target="_blank"
@@ -108,7 +109,7 @@ const About = () => {
                         관련 블로그 글
                       </a>
                     )}
-                  </span>
+                  </SubText>
                 </div>
                 <ul className="text-tertiary col-span-2 list-disc break-keep pl-3.5">
                   {devExperience[content].details.map((detail, idx) => (
